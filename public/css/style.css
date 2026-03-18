@@ -1,0 +1,267 @@
+/* ============================
+   GLOBAL
+============================ */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ============================
+   TOP BAR
+============================ */
+.topbar {
+    background: #111;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 30px;
+    font-size: 14px;
+}
+
+.topbar div {
+    display: flex;
+    gap: 15px;
+}
+
+.top-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.top-links a:hover {
+    text-decoration: underline;
+}
+
+/* ============================
+   NAVBAR
+============================ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    position: relative;
+}
+
+.menu a:hover {
+    color: #3b82f6;
+}
+
+.hot {
+    background: red;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: -8px;
+    right: -18px;
+}
+
+/* NAV RIGHT */
+.nav-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-right input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.signin {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.signin:hover {
+    background: #2563eb;
+}
+
+/* ============================
+   HERO SECTION
+============================ */
+.hero {
+    display: flex;
+    align-items: center; /* vertical center */
+    justify-content: space-between;
+    background: #cfe8f5;
+    padding: 5px 7px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* SWIPER SLIDE FIX */
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* LEFT IMAGE */
+.hero-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-left img {
+    width: 650px;   /* desktop size */
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* RIGHT CONTENT */
+.hero-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    gap: 20px;
+}
+
+.hero-right h4 {
+    color: #2563eb;
+    font-style: italic;
+    font-size: 20px;
+    margin: 0;
+}
+
+.hero-right h1 {
+    font-size: 65px;
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.hero-right p {
+    font-size: 18px;
+    color: #333;
+}
+
+.shop-btn {
+    background: #3b82f6;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: fit-content;
+    transition: all 0.3s;
+}
+
+.shop-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* ============================
+   FOOTER
+============================ */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #111;
+    color: white;
+    font-size: 14px;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 40px 50px;
+        gap: 30px;
+    }
+
+    .hero-left img {
+        width: 500px;
+    }
+
+    .hero-right h1 {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .swiper-slide {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-left img {
+        width: 100%;
+    }
+
+    .hero-right h1 {
+        font-size: 40px;
+    }
+
+    .hero-right p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-right h1 {
+        font-size: 32px;
+    }
+
+    .hero-right h4 {
+        font-size: 16px;
+    }
+
+    .shop-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

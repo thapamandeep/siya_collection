@@ -1,0 +1,155 @@
+/* Content area after sidebar */
+.content {
+    margin-left: 250px; /* sidebar width */
+    padding: 50px 30px;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f5f7fb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Page heading */
+.content h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.content p {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+/* Success message */
+.success-message {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Form container */
+.form-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08),
+                0 4px 10px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-3px);
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+/* Inputs, textarea, select */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="file"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* File input cursor */
+input[type="file"] {
+    cursor: pointer;
+}
+
+/* Textarea styling */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Select dropdown styling */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #f8fafc url('data:image/svg+xml;charset=US-ASCII,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Submit button */
+.btn-submit {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 6px 15px rgba(37,99,235,0.25);
+    transition: all 0.25s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37,99,235,0.35);
+}
+
+/* Error messages */
+.error {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .content {
+        margin-left: 0;
+        padding: 30px 15px;
+    }
+
+    .form-container {
+        padding: 25px 20px;
+    }
+}
