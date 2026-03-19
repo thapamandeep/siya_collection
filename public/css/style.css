@@ -10,7 +10,7 @@ body {
    TOP BAR
 ============================ */
 .topbar {
-    background: #111;
+    background:orange;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -46,9 +46,9 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.logo {
-    font-weight: bold;
-    font-size: 28px;
+.navbar img {
+    height: 100px;   /* adjust size */
+    width: auto;    /* maintain aspect ratio */
 }
 
 .menu {
@@ -151,22 +151,24 @@ body {
 }
 
 .hero-right h4 {
-    color: #2563eb;
-    font-style: italic;
-    font-size: 20px;
+    font-family: 'Pacifico', cursive;
+    color: #111;
+    font-size: 22px;
     margin: 0;
 }
 
 .hero-right h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 65px;
     line-height: 1.1;
     margin: 0;
-    color: #111;
+    color: orange;
+    font-weight: 700;
 }
 
 .hero-right p {
     font-size: 18px;
-    color: #333;
+    color: #837777;   /* ✅ message white */
 }
 
 .shop-btn {

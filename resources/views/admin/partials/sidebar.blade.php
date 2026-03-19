@@ -16,15 +16,13 @@
             </ul>
         </li>
 
-        <!-- ----------heroes -->
-           
-          <li>
-            <input type="checkbox" id="products-toggle" class="toggle-input">
-            <label for="products-toggle" class="toggle-label">Heroes Section</label>
+        <!-- Heroes Section -->
+        <li>
+            <input type="checkbox" id="heroes-toggle" class="toggle-input">
+            <label for="heroes-toggle" class="toggle-label">Heroes Section</label>
             <ul class="submenu">
                 <li><a href="{{route('get.hero.form')}}">Add Heroes</a></li>
                 <li><a href="{{route('get.hero.table')}}">Table</a></li>
-               
             </ul>
         </li>    
 
@@ -35,7 +33,6 @@
             <ul class="submenu">
                 <li><a href="{{route('get.product.form')}}">Add Product</a></li>
                 <li><a href="#">Table</a></li>
-               
             </ul>
         </li>        
 
@@ -85,5 +82,6 @@
         <li>
             <a href="#" class="logout">Logout</a>
         </li>
+
     </ul>
 </div>

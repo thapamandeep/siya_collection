@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\Hero;
 
@@ -13,9 +14,12 @@ class UserController extends Controller
 
 public function front(){
 
+$products = Product::all();
+$roles = Role::all();
+
 $heroes = Hero::all();
 
-return view('site.pages.home', compact('heroes'));
+return view('site.pages.home', compact('heroes','products','roles'));
 }
 
     public function register(){
@@ -28,7 +32,7 @@ return view('site.pages.home', compact('heroes'));
     public function storeUser(Request $request){
         $data = $request->validate([
             'name'=>'required|string|max:255',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'address'=>'required|string|max:500',
             'phone_number'=>'required|string',
             'email'=>'required|email|unique:users,email',
@@ -57,5 +61,25 @@ return view('site.pages.home', compact('heroes'));
         $users->save();
 
         return redirect()->back()->with('success','your form has been submitted successfully');
+    }
+
+    // -----------------------profile---------------//
+
+    public function profile(){
+
+    return view('site.pages.profile');
+    }
+
+    public function detail(Product $product){
+
+    return view('site.pages.detail',compact('product'));
+    }
+
+    public function addCart(Request $request){
+
+    $data = $request->validate([
+        'quantity'=>'requird|integer|min:1',
+    ]);
+    
     }
 }

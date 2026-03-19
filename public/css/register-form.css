@@ -1,154 +1,192 @@
-body {
-    background: linear-gradient(135deg, #eef2ff, #f3f4f6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
+body{
+    margin:0;
+    font-family: Helvetica, Arial, sans-serif;
+    background:#f0f2f5;
 }
 
-.register-container {
-    background: #ffffff;
-    padding: 50px 35px;
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 450px;
-    transition: transform 0.3s, box-shadow 0.3s;
+/* Main Container */
+.auth-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    padding:20px;
+    gap:40px;
+    box-sizing:border-box;
 }
 
-.register-container:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+/* LEFT SIDE */
+.auth-left{
+    flex:1;
+    max-width:500px;
+    padding-left:60px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1f2937;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+.auth-left h1{
+    font-size:64px;
+    color:#f97316; /* ORANGE */
+    margin-bottom:10px;
+    font-weight:700;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.auth-left p{
+    font-size:22px;
+    color:#1c1e21;
+    line-height:1.5;
 }
 
-input, textarea {
-    padding: 14px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    font-size: 15px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    width: 100%;
+/* RIGHT SIDE */
+.auth-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-input:focus, textarea:focus {
-    border-color: #6366f1; /* soft purple accent */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    outline: none;
+/* FORM BOX */
+.form-box{
+    width:320px;
+    background:#fff;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    box-sizing:border-box;
 }
 
-textarea {
-    resize: none;
-    min-height: 90px;
+/* FORM TITLE */
+.form-box h2{
+    text-align:center;
+    margin-bottom:15px;
+    color:#1c1e21;
 }
 
-button {
-    background: #6366f1;
-    color: #ffffff;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+/* Inputs & Select */
+.form-box input,
+.form-box select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #dddfe2;
+    border-radius:6px;
+    font-size:14px;
+    outline:none;
+    box-sizing:border-box;
 }
 
-button:hover {
-    background: #4f46e5;
-    transform: translateY(-2px);
+/* Focus */
+.form-box input:focus,
+.form-box select:focus{
+    border-color:#f97316;
+    box-shadow:0 0 0 2px rgba(249,115,22,0.2);
 }
 
-.login-links {
-    text-align: center;
-    margin-top: 18px;
-    font-size: 14px;
+/* Button */
+.form-box button{
+    width:100%;
+    padding:12px;
+    background:#f97316;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.login-links a {
-    color: #6366f1;
-    text-decoration: none;
-    font-weight: 500;
+.form-box button:hover{
+    background:#ea580c;
 }
 
-.login-links a:hover {
-    text-decoration: underline;
+/* Login Link */
+.login-link{
+    text-align:center;
+    margin-top:12px;
+    font-size:14px;
 }
 
-.message {
-    padding: 12px 15px;
-    border-radius: 12px;
-    font-size: 14px;
-    margin-bottom: 18px;
+.login-link a{
+    color:#f97316;
+    text-decoration:none;
+    font-weight:500;
 }
 
-.success {
-    background: #dcfce7;
-    color: #166534;
-    border-left: 4px solid #4ade80;
+.login-link a:hover{
+    text-decoration:underline;
 }
 
-.error {
-    background: #fee2e2;
-    color: #991b1b;
-    border-left: 4px solid #f87171;
+/* ALERT MESSAGES */
+.alert{
+    padding:12px 14px;
+    margin-bottom:12px;
+    border-radius:6px;
+    font-size:14px;
+    line-height:1.4;
+    font-weight:500;
 }
 
-@media (max-width: 480px) {
-    .register-container {
-        padding: 35px 25px;
+/* SUCCESS */
+.alert.success{
+    background:#e6f4ea;
+    color:#2e7d32;
+    border:1px solid #b7e1c1;
+}
+
+/* ERROR */
+.alert.error{
+    background:#fdecea;
+    color:#c62828;
+    border:1px solid #f5c2c0;
+}
+
+.alert ul{
+    margin:0;
+    padding-left:18px;
+}
+
+.alert ul li{
+    margin-bottom:4px;
+}
+
+/* Animation */
+.alert{
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
-input[type="file"] {
-    padding: 10px;
-    background: #f9fafb;
-    cursor: pointer;
-}
-select {
-    padding: 14px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    font-size: 15px;
-    width: 100%;
-    background-color: #fff;
-    color: #374151;
-    cursor: pointer;
 
-    /* remove default arrow (for custom style) */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+/* RESPONSIVE */
+@media(max-width:900px){
+    .auth-container{
+        flex-direction:column;
+        text-align:center;
+        height:auto;
+    }
 
-    /* custom arrow */
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%236366f1' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5H5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 16px;
+    .auth-left{
+        padding-left:0;
+        margin-bottom:20px;
+    }
 
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
+    .auth-left h1{
+        font-size:40px;
+    }
 
-select:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    outline: none;
-}
+    .auth-left p{
+        font-size:18px;
+    }
 
-select:hover {
-    border-color: #6366f1;
+    .form-box{
+        width:100%;
+        max-width:350px;
+    }
 }

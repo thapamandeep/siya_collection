@@ -55,6 +55,9 @@ class AdminController extends Controller
 
     // ------------Product-----------------//
 
+ 
+   
+
     public function addProduct(){
 
     $categories = Category::all();

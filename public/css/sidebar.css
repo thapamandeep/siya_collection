@@ -1,9 +1,14 @@
-/* Sidebar basic styling */
+/* =========================
+   GLOBAL
+========================= */
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar{
     position: fixed;
     left:0;
@@ -13,15 +18,23 @@ body{
     background:#111827;
     color:white;
     padding-top:20px;
+    overflow-y:auto;
 }
 
+/* =========================
+   LOGO
+========================= */
 .logo{
     text-align:center;
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
     margin-bottom:30px;
+    letter-spacing:1px;
 }
 
+/* =========================
+   MENU
+========================= */
 .menu{
     list-style:none;
     padding:0;
@@ -32,25 +45,46 @@ body{
     position: relative;
 }
 
-/* toggle labels and links for menu items */
+/* =========================
+   MAIN LINKS + LABELS
+========================= */
 .menu li a,
 .menu li .toggle-label{
-    display:block;
-    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 25px;
     text-decoration:none;
     color:white;
     cursor:pointer;
-    transition:0.3s;
+    transition: all 0.3s ease;
+    font-size:15px;
 }
 
-/* hover effect */
+/* Hover effect */
 .menu li a:hover,
 .menu li .toggle-label:hover{
     background:#374151;
     padding-left:30px;
 }
 
-/* Submenu CSS */
+/* =========================
+   ARROW ICON
+========================= */
+.toggle-label::after{
+    content:"▼";
+    font-size:12px;
+    transition:0.3s;
+}
+
+/* Rotate arrow when open */
+.toggle-input:checked + .toggle-label::after{
+    transform: rotate(180deg);
+}
+
+/* =========================
+   SUBMENU
+========================= */
 .submenu{
     list-style:none;
     padding:0;
@@ -58,41 +92,89 @@ body{
     max-height:0;
     overflow:hidden;
     background:#1f2937;
-    transition: max-height 0.3s ease;
+    transition:max-height 0.3s ease;
 }
 
+/* submenu items */
 .submenu li a{
-    padding:12px 40px;
+    padding:12px 45px;
     font-size:14px;
     color:#d1d5db;
-    display:block;
-}
-
-.submenu li a:hover{
-    background:#374151;
-}
-
-/* Checkbox toggle for submenu */
-.toggle-input{
-    display:none;
-}
-
-.toggle-input:checked + .toggle-label + .submenu{
-    max-height:500px;
-}
-
-/* Logout matches main menu */
-.menu li a.logout{
-    background:none; /* same as other links */
-    color:white;
-    font-weight: normal;
-    text-align:left;
-    padding:15px 25px;
     display:block;
     transition:0.3s;
 }
 
-.menu li a.logout:hover{
+/* submenu hover */
+.submenu li a:hover{
     background:#374151;
+    padding-left:50px;
+}
+
+/* =========================
+   TOGGLE FUNCTION
+========================= */
+.toggle-input{
+    display:none;
+}
+
+/* OPEN submenu */
+.toggle-input:checked + .toggle-label + .submenu{
+    max-height:500px;
+}
+
+/* ACTIVE MENU STYLE */
+.toggle-input:checked + .toggle-label{
+    background:#374151;
+    font-weight:bold;
+}
+
+/* =========================
+   SECTION COLORS (Optional)
+========================= */
+
+/* Heroes Section */
+#heroes-toggle:checked + .toggle-label{
+    border-left:4px solid #3b82f6;
+}
+
+/* Products Section */
+#products-toggle:checked + .toggle-label{
+    border-left:4px solid #10b981;
+}
+
+/* Category */
+#category-toggle:checked + .toggle-label{
+    border-left:4px solid #f59e0b;
+}
+
+/* Orders */
+#orders-toggle:checked + .toggle-label{
+    border-left:4px solid #ef4444;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+.menu li a.logout{
+    color:#f87171;
+    font-weight:500;
+}
+
+/* logout hover */
+.menu li a.logout:hover{
+    background:#7f1d1d;
+    color:white;
     padding-left:30px;
+}
+
+/* =========================
+   SCROLLBAR (optional)
+========================= */
+.sidebar::-webkit-scrollbar{
+    width:5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:#374151;
+    border-radius:10px;
 }

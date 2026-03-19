@@ -2,10 +2,16 @@
 
     <!-- TOP BAR -->
     <div class="topbar">
+
+    @if(Auth::check())
+        <div>{{Auth::user()?->name ?? ""}}</div>
+        @else
         <div>NEP</div>
-        <div>9779824106926</div>
+     @endif
+        <div>{{Auth::user()?->phone_number ?? ""}}</div>
+         
         <div class="top-links">
-            <a href="#">My Account</a>
+            <a href="{{route('get.logout')}}">Logout</a>
             <a href="#">Wish List</a>
             <a href="#">Shopping</a>
             <a href="#">Cart</a>
@@ -15,7 +21,7 @@
 
     <!-- NAVBAR -->
     <div class="navbar">
-        <h2 class="logo">Siya Collection<span>.</span></h2>
+      <img src="{{asset('img/siya-collection-logo.png')}}" alt="logo">
 
         <ul class="menu">
             <li><a href="#">Home</a></li>
@@ -28,7 +34,7 @@
 
         <div class="nav-right">
             <input type="text" placeholder="Search products">
-            <button class="signin">Sign In</button>
+           <a href="{{route('get.register')}}"> <button class="signin">Sign In</button></a>
         </div>
     </div>
 

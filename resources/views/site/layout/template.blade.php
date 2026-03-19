@@ -6,15 +6,23 @@
     <title>Siya Collection</title>
 <!-- Swiper CSS in HEAD -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
 <!-- Your style.css -->
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/products.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/forgot-password.css') }}">
+<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+
 <!-- Swiper JS -->
 
 </head>
 <body>
 
     @include('site.partials.header')
+  
 
     
         @yield('content')
@@ -24,6 +32,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/hero-slide.js') }}"></script>
+<script src="{{ asset('js/register.js') }}"></script>
 
 </body>
 <!-- Swiper CSS -->
