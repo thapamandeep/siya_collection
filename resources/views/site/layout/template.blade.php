@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 <link rel="stylesheet" href="{{ asset('css/forgot-password.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/cart-collection.css') }}">
+
 
 <!-- Swiper JS -->
 

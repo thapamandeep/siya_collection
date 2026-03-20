@@ -2,37 +2,62 @@
 
 @section('content')
 
-<div class="product-detail-container">
+<div class="product-wrapper">
 
-    <div class="product-detail">
+    <!-- SUCCESS MESSAGE -->
+  
+
+    <!-- PRODUCT CARD -->
+    <div class="product-card">
+
+      @if(session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- ERROR MESSAGE -->
+    @if(session('error'))
+        <div class="alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
 
         <!-- LEFT IMAGE -->
-        <div class="product-image">
-            <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
+        <div class="product-left">
+            <div class="image-box">
+                <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
+            </div>
         </div>
 
-        <!-- RIGHT INFO -->
-        <div class="product-info">
+        <!-- RIGHT DETAILS -->
+        <div class="product-right">
 
-            <h1 class="product-title">{{ $product->name }}</h1>
+            <h1 class="title">{{ $product->name }}</h1>
 
-            <p class="product-price">Rs. {{ $product->cost }}</p>
+            <p class="price">Rs. {{ $product->cost }}</p>
 
-            <p class="product-description">
-                {{ $product->description }}
-            </p>
+            <p class="desc">{{ $product->description }}</p>
 
-            <!-- Quantity -->
-            <div class="quantity-box">
-                <label>Quantity:</label>
-                <input type="number" value="1" min="1">
-            </div>
+            <!-- FORM -->
+            <form action="{{ route('post.add.cart',$product->id) }}" method="POST">
+                @csrf
 
-            <!-- Buttons -->
-            <div class="product-actions">
-                <button class="add-cart-btn">Add to Cart</button>
-                <button class="buy-now-btn">Buy Now</button>
-            </div>
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                <!-- QUANTITY -->
+                <div class="qty">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" value="1" min="1">
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="actions">
+                    <button type="submit" class="btn-cart">Add to Cart</button>
+                    <button type="button" class="btn-buy">Buy Now</button>
+                </div>
+
+            </form>
 
         </div>
 

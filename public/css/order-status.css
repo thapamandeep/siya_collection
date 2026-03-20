@@ -1,0 +1,58 @@
+      body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+            margin: 0;
+        }
+
+        .email-wrapper {
+            max-width: 520px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            color: #f97316;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .info span {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .status {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .message-box {
+            margin-top: 20px;
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #6b7280;
+            text-align: center;
+        }

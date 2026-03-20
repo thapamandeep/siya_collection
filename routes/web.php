@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -48,3 +50,17 @@ Route::get('/password',[AuthController::class,'forgotPassword'])->name('get.forg
 Route::get('/reset-password',[AuthController::class,'resetPassword'])->name('get.reset.password');
 Route::post('/otp-reset-password',[AuthController::class,'newPassword'])->name('post.otp.password');
 Route::post('/new-password',[AuthController::class,'updatePassword'])->name('post.new.password');
+
+// ------------------------forr carts-----------------------//
+Route::post('/add-carts/{product}',[CartController::class,'addCart'])->name('post.add.cart')->middleware('user');
+Route::get('/cart-show',[CartController::class,'showcart'])->name('get.show.cart')->middleware('user');
+Route::get('/cart/delete/{cart}',[CartController::class,'deleteCart'])->name('get.delete.cart')->middleware('user');
+Route::post('/purchase',[CartController::class,'purchase'])->name('post.purchase')->middleware('user');
+
+
+// -----------------------for order----------------------------//
+Route::get('/all-orders',[AdminController::class,'orderIndex'])->name('get.all.orders')->middleware('admin');
+  Route::get('/orders-processing/{userId}', [OrderController::class,'markUserProcessing'])->name('order.processing.user')->middleware('admin');
+  Route::get('/orders-shipping/{userId}', [OrderController::class,'markUserShipping'])->name('order.shipping.user')->middleware('admin');
+  Route::get('/orders-delivered/{userId}', [OrderController::class,'markUserDelivered'])->name('order.delivered.user')->middleware('admin');
+

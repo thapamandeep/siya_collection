@@ -47,8 +47,8 @@ body {
 }
 
 .navbar img {
-    height: 100px;   /* adjust size */
-    width: auto;    /* maintain aspect ratio */
+    height: 105px;   /* adjust size */
+    width: 230px;    /* maintain aspect ratio */
 }
 
 .menu {
@@ -169,6 +169,22 @@ body {
 .hero-right p {
     font-size: 18px;
     color: #837777;   /* ✅ message white */
+}
+.heroe-shop-btn {
+    width: 120px;
+    height:60px;
+      padding: 6px 6px;
+    font-size: 20px;
+    background: #e76b0b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Hover effect */
+.heroe-shop-btn:hover {
+    background: #444;
 }
 
 .shop-btn {

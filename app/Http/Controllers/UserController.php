@@ -75,11 +75,6 @@ return view('site.pages.home', compact('heroes','products','roles'));
     return view('site.pages.detail',compact('product'));
     }
 
-    public function addCart(Request $request){
-
-    $data = $request->validate([
-        'quantity'=>'requird|integer|min:1',
-    ]);
     
-    }
+    
 }

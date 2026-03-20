@@ -1,0 +1,173 @@
+/* =========================
+   WRAPPER
+========================= */
+.cart-wrapper {
+    padding: 40px;
+    background: #f3f4f6;
+}
+
+/* TITLE */
+.cart-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+/* =========================
+   LAYOUT (STACK VERTICAL)
+========================= */
+.cart-container {
+    display: flex;
+    flex-direction: column; /* ✅ table above, summary below */
+    gap: 20px;
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+.cart-table-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* TABLE */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+.cart-table thead {
+    background: #f3f4f6;
+}
+
+.cart-table th {
+    text-align: left;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* ROW */
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #111827;
+}
+
+/* PRODUCT CELL */
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-cell img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: #f9fafb;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+/* =========================
+   REMOVE BUTTON
+========================= */
+.remove-btn {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.remove-btn:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+/* =========================
+   SUMMARY (BOTTOM CARD)
+========================= */
+.cart-summary {
+    background: #f9fafb;
+    color: #111827;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+/* SUMMARY TITLE */
+.cart-summary h3 {
+    margin-bottom: 15px;
+}
+
+/* SUMMARY ROW */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* CHECKOUT BUTTON */
+/* CHECKOUT BUTTON (UPDATED) */
+.checkout-btn {
+    width: auto;              /* ❌ full width हटायो */
+    padding: 8px 16px;       /* smaller size */
+    background: #f97316;     /* 🔶 orange color */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    float: right;            /* 👉 right side align */
+}
+
+/* HOVER */
+.checkout-btn:hover {
+    background: #ea580c;
+}
+/* =========================
+   ALERTS
+========================= */
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

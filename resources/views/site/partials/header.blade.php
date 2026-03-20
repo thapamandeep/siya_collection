@@ -14,7 +14,7 @@
             <a href="{{route('get.logout')}}">Logout</a>
             <a href="#">Wish List</a>
             <a href="#">Shopping</a>
-            <a href="#">Cart</a>
+            <a href="{{route('get.show.cart')}}">Cart</a>
             <a href="#">Checkout</a>
         </div>
     </div>

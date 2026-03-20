@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Models\Category;
 use \App\Models\Product;
 use \App\Models\Hero;
+use \App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -173,5 +174,14 @@ class AdminController extends Controller
 
     $hero->save();  // <-- save always
     return redirect()->back()->with('success','Your hero has been updated successfully');
+}
+
+// ----------------------order------------------------//
+
+public function orderIndex(){
+
+ $orders = Order::with('user')->get();
+
+return view('admin.order.index', compact('orders'));
 }
 }

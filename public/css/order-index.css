@@ -1,0 +1,176 @@
+/* =========================
+   CONTENT AREA
+========================= */
+.content {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+/* =========================
+   TITLE
+========================= */
+.content h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #111827;
+}
+
+.content p {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+.success-message {
+    background: #dcfce7;
+    color: #166534;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #86efac;
+}
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+.table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+/* HEADER */
+.category-table thead {
+    background: #111827;
+}
+
+.category-table th {
+    color: #fff;
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ROW */
+.category-table td {
+    padding: 12px;
+    font-size: 13px;
+    color: #374151;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* ROW HOVER */
+.category-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   IMAGE
+========================= */
+.cat-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #f3f4f6;
+    padding: 5px;
+}
+
+/* =========================
+   STATUS TEXT (IMPROVED)
+========================= */
+.category-table td:nth-child(8) {
+    font-weight: 600;
+}
+
+/* Optional colored status */
+.category-table td:nth-child(8):contains("pending") {
+    color: #f59e0b;
+}
+
+/* =========================
+   ACTION BUTTONS (FIXED 🔥)
+========================= */
+.action-buttons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* IMPORTANT FIX */
+.category-table button {
+    width: auto !important;   /* 🔥 fix full width issue */
+    padding: 5px 10px;
+    font-size: 11px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+/* Processing */
+.category-table .btn-processing {
+    background: #facc15;
+    color: #111;
+}
+
+/* Shipping */
+.category-table .btn-shipping {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* Delivered */
+.category-table .btn-delivered {
+    background: #22c55e;
+    color: #fff;
+}
+
+/* Hover */
+.category-table button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+    }
+
+    .category-table th,
+    .category-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .cat-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

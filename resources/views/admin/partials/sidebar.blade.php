@@ -51,7 +51,7 @@
             <input type="checkbox" id="orders-toggle" class="toggle-input">
             <label for="orders-toggle" class="toggle-label">Orders</label>
             <ul class="submenu">
-                <li><a href="#">All Orders</a></li>
+                <li><a href="{{route('get.all.orders')}}">All Orders</a></li>
                 <li><a href="#">Pending Orders</a></li>
                 <li><a href="#">Completed Orders</a></li>
             </ul>
@@ -80,7 +80,7 @@
 
         <!-- Logout -->
         <li>
-            <a href="#" class="logout">Logout</a>
+            <a href="{{route('get.logout')}}" class="logout">Logout</a>
         </li>
 
     </ul>

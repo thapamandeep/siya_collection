@@ -15,7 +15,7 @@
                 <h4>{{$hero->discount}}</h4>
                 <h1>{{$hero->title}}</h1>
                 <p>{{$hero->message}}</p>
-                <button class="shop-btn">Shop Now</button>
+                <button class="heroe-shop-btn">Shop Now</button>
             </div>
         </div>
         @endforeach
@@ -25,25 +25,36 @@
     <div class="swiper-pagination"></div>
 </section>
 
-   
-<section class="products-section">
-    <h2 class="section-title">Our Products</h2>
+<section class="shop-section">
 
-    <div class="product-grid">
+    <h2 class="shop-title">Our Products</h2>
+
+    <div class="shop-grid">
+
         @foreach($products as $product)
-        <div class="product-card">
-            <div class="product-img">
-               <a href="{{route('get.detail',$product->id)}}"><img src="{{ asset('storage/album/'.$product->image) }}" alt=""></a> 
+
+        <div class="shop-card">
+
+           <a href="{{route('get.detail',$product->id)}}"> <div class="shop-image">
+                <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
+            </div></a>
+
+            <div class="shop-info">
+                <h3>{{ $product->name }}</h3>
+                <p class="shop-price">Rs. {{ $product->cost }}</p>
             </div>
 
-            <div class="product-info">
-                <h3>{{$product->name}}</h3>
-                <p class="price">Rs. {{$product->cost}}</p>
-                <button class="buy-btn">Buy Now</button>
+            <div class="shop-action">
+                <a href="{{ route('get.detail', $product->id) }}">
+                    <button class="shop-btn">Buy Now</button>
+                </a>
             </div>
+
         </div>
-        @endforeach
-    </div>
-</section>
 
+        @endforeach
+
+    </div>
+
+</section>
 @endsection
