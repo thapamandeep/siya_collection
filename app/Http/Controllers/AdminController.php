@@ -7,6 +7,7 @@ use \App\Models\Category;
 use \App\Models\Product;
 use \App\Models\Hero;
 use \App\Models\Order;
+use \App\Models\About;
 
 class AdminController extends Controller
 {
@@ -100,6 +101,60 @@ class AdminController extends Controller
    return redirect()->back()->with('success','your product has been saved successfully');
    }
 
+   public function productIndex(){
+
+   $products = Product::all();
+
+   return view('admin.product.index',compact('products'));
+   }
+
+   public function editProduct(Product $product){
+
+   $categories = Category::all();
+
+   return view('admin.product.edit',compact('product','categories'));
+   }
+
+   public function updateProduct(Request $request,Product $product){
+
+   $data = $request->validate([
+      'name'=>'nullable|string|max:20',
+    'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    'description'=>'nullable|string|max:2048',
+    'quantity'=>'nullable|integer|min:1',
+    'cost'=>'nullable|integer',
+    'category_id'=>'nullable|exists:categories,id',
+   
+   ]);
+
+    $product->name = $data['name'];
+    $product->description = $data['description'];
+    $product->quantity = $data['quantity'];
+    $product->cost = $data['cost'];
+    $product->category_id = $data['category_id'];
+
+   if($request->hasFile('image')){
+
+   $file = $request->file('image');
+   $newImage = time().'.'.$file->getClientOriginalExtension();
+   $file->storeAs('album',$newImage,'public');
+
+   $product->image = $newImage;
+
+   }
+
+   $product->save();
+
+   return redirect()->back()->with('success','your product has been updated successfully');
+ 
+   }
+   public function productDelete(Product $product){
+
+   $product->delete();
+
+   return redirect()->back()->with('success','product has been delete');
+   }
+
     // ======================hero section======================//
 
    public function hero(){
@@ -114,6 +169,7 @@ class AdminController extends Controller
     'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:8000',
     'message'=>'required|string|max:2055',
     'discount'=>'nullable|string|max:255',
+    'old_image'=>'required',
    ]);
 
    $newImage = "";
@@ -183,5 +239,73 @@ public function orderIndex(){
  $orders = Order::with('user')->get();
 
 return view('admin.order.index', compact('orders'));
+}
+
+public function aboutForm(){
+
+return view('admin.aboutUs.form');
+}
+
+public function storeAbout(Request $request){
+
+$data = $request->validate([
+    'title'=>'required',
+    'description'=>'required|string|max:2055',
+    'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8000',
+]);
+$newImage = "";
+
+if($request->hasFile('image')){
+    
+$file = $request->file('image');
+$newImage = time().'.'.$file->getClientOriginalExtension();
+$file->storeAs('photos',$newImage,'public');
+}
+
+$abouts = new About();
+$abouts->title = $data['title'];
+$abouts->description = $data['description'];
+$abouts->image = $newImage;
+
+$abouts->save();
+
+return redirect()->back()->with('success','about data has been saved');
+}
+
+public function indexAbout(){
+  
+$abouts = About::all();
+
+return view('admin.aboutUs.index',compact('abouts'));
+}
+
+public function editAbout(About $about){
+
+return view('admin.aboutUs.edit',compact('about'));
+}
+
+public function updateAbout(Request $request,About $about){
+
+$data = $request->validate([
+    'title'=>'nullable|string|max:255',
+    'description'=>'required|string|max:2055',
+    'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8000',
+  
+]);
+
+$about->title = $data['title'];
+$about->description = $data['description'];
+
+if($request->hasFile('image')){
+    $file = $request->file('image');
+    $newImage = time().'.'.$file->getClientOriginalExtension();
+    $file->storeAs('photos',$newImage,'public');
+   
+    $about->image = $newImage;
+}else{
+    $about->image = $data['old_image'];
+}
+$about->save();
+return redirect()->back()->with('success','your about us data has been updated');
 }
 }

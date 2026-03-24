@@ -1,0 +1,96 @@
+.about-container {
+    position: relative;
+    padding: 80px 20px;
+    min-height: 100vh;
+
+    /* BACKGROUND LOGO */
+    background-image: url('/img/siya-collection-logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 900px;
+}
+
+/* Overlay */
+.about-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.92);
+    z-index: 1;
+}
+
+/* WRAPPER */
+.about-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* LEFT TEXT */
+.about-content {
+    flex: 1;
+}
+
+.about-content h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.about-text {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* HIGHLIGHT */
+.about-highlight h3 {
+    margin-top: 20px;
+    color: orange;
+}
+
+.about-highlight ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-highlight li {
+    margin-bottom: 8px;
+}
+
+/* RIGHT IMAGE */
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.about-image img:hover {
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .about-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content h1 {
+        font-size: 30px;
+    }
+}

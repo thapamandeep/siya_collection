@@ -16,6 +16,11 @@
 <link rel="stylesheet" href="{{ asset('css/forgot-password.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 <link rel="stylesheet" href="{{ asset('css/cart-collection.css') }}">
+<link rel="stylesheet" href="{{ asset('css/aboutUs.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile-edit.css') }}">
+<link rel="stylesheet" href="{{ asset('css/contact-us.css') }}">
+<link rel="stylesheet" href="{{ asset('css/my-order.css') }}">
+<link rel="stylesheet" href="{{ asset('css/review.css') }}">
 
 
 <!-- Swiper JS -->
@@ -35,6 +40,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/hero-slide.js') }}"></script>
 <script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/profile.js') }}"></script>
 
 </body>
 <!-- Swiper CSS -->

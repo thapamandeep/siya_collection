@@ -1,0 +1,165 @@
+/* =========================
+   PRODUCT TABLE
+========================= */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 700px; /* slightly wider than category */
+}
+
+.product-table thead {
+    background: #f8fafc;
+}
+
+.product-table th {
+    text-align: left;
+    padding: 8px 10px;
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.product-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    vertical-align: middle;
+}
+
+/* ID column small & center */
+.product-table th:first-child,
+.product-table td:first-child {
+    width: 50px;
+    text-align: center;
+}
+
+/* Row hover */
+.product-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.product-table tbody tr:hover {
+    background: #f9fafb;
+    transform: scale(1.01);
+}
+
+/* Zebra rows */
+.product-table tbody tr:nth-child(even) {
+    background: #fcfcfd;
+}
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+.prod-img {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #f1f5f9;
+    transition: transform 0.25s ease;
+}
+
+.prod-img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.delete-form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.actions button {
+    all: unset;
+}
+
+/* Edit button */
+.actions a.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: #3b82f6;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(59,130,246,0.3);
+}
+
+/* Delete button */
+/* Delete button (same as edit but red) */
+.actions a.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: #ef4444;
+    color: #fff;
+}
+
+.actions a.delete-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(239,68,68,0.3);
+}
+
+
+
+/* Scrollbar */
+.table-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-table {
+        font-size: 12px;
+    }
+
+    .prod-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .actions a,
+    .actions button {
+        height: 26px;
+        font-size: 11px;
+        padding: 0 8px;
+    }
+}

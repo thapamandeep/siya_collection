@@ -161,6 +161,99 @@
 }
 
 /* =========================
+   REVIEWS SECTION
+/* =========================
+   REVIEWS SECTION (UPDATED)
+========================= */
+.reviews-section {
+    max-width: 1100px;
+    margin: 50px auto 0;
+    padding: 20px;
+}
+
+.reviews-section h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #111827;
+    border-left: 5px solid #2563eb;
+    padding-left: 10px;
+}
+
+/* =========================
+   REVIEW CARD
+========================= */
+.review-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   HEADER
+========================= */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-header strong {
+    font-size: 15px;
+    color: #111827;
+}
+
+/* =========================
+   RATING
+========================= */
+.review-rating {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+.review-message {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* =========================
+   DATE
+========================= */
+.review-date {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* =========================
+   NO REVIEWS
+========================= */
+.no-reviews {
+    text-align: center;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 10px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 @media (max-width:768px){

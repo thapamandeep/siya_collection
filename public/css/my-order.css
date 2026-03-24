@@ -1,0 +1,169 @@
+/* =========================
+   ORDERS SECTION (MATCH HERO STYLE)
+========================= */
+.orders-wrapper {
+    padding: 60px 20px;
+    background: #f9fbfd; /* same soft feel like hero */
+    display: flex;
+    justify-content: center;
+}
+
+/* =========================
+   CARD
+========================= */
+.orders-card {
+    width: 100%;
+    max-width: 1000px;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   TITLE (MATCH HERO COLOR)
+========================= */
+.orders-card h2 {
+    text-align: center;
+    color: orange; /* same as your hero heading */
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   TABLE
+========================= */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+.orders-table thead {
+    background: #cfe8f5; /* same as hero bg */
+}
+
+.orders-table th {
+    padding: 12px;
+    font-size: 14px;
+    color: #111;
+    font-weight: 600;
+}
+
+/* BODY */
+.orders-table td {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ROW STYLE */
+.orders-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.orders-table tbody tr:hover {
+    background: #f1f7fb; /* light blue hover */
+}
+
+/* =========================
+   IMAGE
+========================= */
+.orders-table img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* =========================
+   STATUS
+========================= */
+.status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* pending */
+.status.pending {
+    background: #ffe7c2;
+    color: #e76b0b; /* your orange tone */
+}
+
+/* completed */
+.status.completed {
+    background: #d1fae5;
+    color: #059669;
+}
+
+/* others */
+.status.other {
+    background: #eee;
+    color: #555;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.no-orders {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+}
+/* =========================
+   ACTION BUTTON (DELETE)
+========================= */
+.orders-table button {
+    background: #e76b0b; /* your orange */
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover */
+.orders-table button:hover {
+    background: #111;
+    transform: translateY(-1px);
+}
+
+/* Active click */
+.orders-table button:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .orders-card {
+        padding: 20px;
+    }
+
+    .orders-table thead {
+        display: none;
+    }
+
+    .orders-table tr {
+        display: block;
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .orders-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+    }
+}

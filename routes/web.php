@@ -21,6 +21,10 @@ Route::get('/category-table',[AdminController::class,'categoryTable'])->name('ge
 // ----------------for the product----------------//
 Route::get('/product-form',[AdminController::class,'addProduct'])->name('get.product.form')->middleware('admin');
 Route::post('/store-product',[AdminController::class,'storeProduct'])->name('post.product')->middleware('admin');
+Route::get('/product-index',[AdminController::class,'productindex'])->name('get.product.index')->middleware('admin');
+Route::get('/edit-product/{product}',[AdminController::class,'editProduct'])->name('get.edit.product')->middleware('admin');
+Route::post('/update-product/{product}',[AdminController::class,'updateProduct'])->name('post.update.product')->middleware('admin');
+Route::get('delete-prroduct/{product}',[AdminController::class,'productDelete'])->name('get.delete.product')->middleware('admin');
 Route::get('/detail/{product}',[UserController::class,'detail'])->name('get.detail');
 
 // ============login // logout===================//
@@ -43,7 +47,7 @@ Route::get('/hero-edit/{hero}',[AdminController::class,'editHero'])->name('get.e
 Route::post('/update-hero/{hero}',[AdminController::class,'updateHero'])->name('post.update.hero')->middleware('admin');
 
 // -------------------profile-----------------------//
-Route::get('/profile',[UserController::class,'profile'])->name('get.profile')->middleware('user');
+Route::get('/edit-prrofile{profile}',[UserController::class,'editProfile'])->name('get.edit.profile')->middleware('user');
 
 // ----------------------for password--------------------------/
 Route::get('/password',[AuthController::class,'forgotPassword'])->name('get.forgot.password');
@@ -63,4 +67,20 @@ Route::get('/all-orders',[AdminController::class,'orderIndex'])->name('get.all.o
   Route::get('/orders-processing/{userId}', [OrderController::class,'markUserProcessing'])->name('order.processing.user')->middleware('admin');
   Route::get('/orders-shipping/{userId}', [OrderController::class,'markUserShipping'])->name('order.shipping.user')->middleware('admin');
   Route::get('/orders-delivered/{userId}', [OrderController::class,'markUserDelivered'])->name('order.delivered.user')->middleware('admin');
+  Route::get('/my-order',[OrderController::class,'myOrder'])->name('get.my.order')->middleware('user');
 
+  // ---------------------for about us -----------------------------//
+  Route::get('/about-us',[UserController::class,'aboutUs'])->name('get.about.us');
+  Route::get('/aboutUs-form',[AdminController::class,'aboutForm'])->name('get.about.form')->middleware('admin');
+  Route::post('store-about',[AdminController::class,'storeAbout'])->name('post.about.us')->middleware('admin');
+  Route::get('index-about',[AdminController::class,'indexAbout'])->name('get.index.about')->middleware('admin');
+  Route::get('edit-about/{about}',[AdminController::class,'editAbout'])->name('get.edit.about')->middleware('admin');
+  Route::post('update-about/{about}',[AdminController::class,'updateAbout'])->name('post.update.about')->middleware('admin');
+
+  // ----------------------for contact us -------------------------//
+  Route::get('/contact-us',[UserController::class,'contactUs'])->name('get.contact.us')->middleware('user');
+  Route::post('contact-store',[AuthController::class,'ContactStore'])->name('post.contact.us')->middleware('user');
+
+  // -------------------------------for product review----------------------------//
+  Route::get('/product-review/{product}',[OrderController::class,'review'])->name('get.product.review')->middleware('user');
+  Route::post('store-review/{product}',[OrderController::class,'storeReview'])->name('post.product.review')->middleware('user');

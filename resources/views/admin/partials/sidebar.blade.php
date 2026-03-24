@@ -32,7 +32,7 @@
             <label for="products-toggle" class="toggle-label">Products</label>
             <ul class="submenu">
                 <li><a href="{{route('get.product.form')}}">Add Product</a></li>
-                <li><a href="#">Table</a></li>
+                <li><a href="{{route('get.product.index')}}">Table</a></li>
             </ul>
         </li>        
 
@@ -57,15 +57,17 @@
             </ul>
         </li>
 
-        <!-- Cart -->
+        <!-- About us -->
         <li>
             <input type="checkbox" id="cart-toggle" class="toggle-input">
-            <label for="cart-toggle" class="toggle-label">Cart</label>
+            <label for="cart-toggle" class="toggle-label">About Us</label>
             <ul class="submenu">
-                <li><a href="#">My Cart</a></li>
-                <li><a href="#">Checkout</a></li>
+                <li><a href="{{route('get.about.form')}}">Form</a></li>
+                <li><a href="{{route('get.index.about')}}">Table</a></li>
             </ul>
         </li>
+
+        
 
         <!-- Profile -->
         <li>

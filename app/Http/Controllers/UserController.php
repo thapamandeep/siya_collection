@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\Hero;
+use App\Models\About;
+use App\Models\Review;
+
 
 class UserController extends Controller
 {
@@ -65,16 +68,31 @@ return view('site.pages.home', compact('heroes','products','roles'));
 
     // -----------------------profile---------------//
 
-    public function profile(){
+    public function editProfile(User $user){
 
-    return view('site.pages.profile');
+    return view('site.profile.edit',compact('user'));
     }
 
     public function detail(Product $product){
 
-    return view('site.pages.detail',compact('product'));
+    $reviews = Review::all();
+
+    return view('site.pages.detail',compact('product','reviews'));
     }
 
+    public function aboutUs(){
+
+    $abouts = About::all();
+
+    return view('site.pages.aboutUs',compact('abouts'));
+    }
+
+    public function contactUs(){
+
+    return view('site.pages.contact-us');
+    }
+
+    
     
     
 }

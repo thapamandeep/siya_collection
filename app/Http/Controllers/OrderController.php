@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderUpdateStatus;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Review;
 
 class OrderController extends Controller
 {
@@ -50,5 +52,37 @@ class OrderController extends Controller
     Mail::to($user->email)->send(new OrderUpdateStatus($order));
 
     return redirect()->back()->with('success','your order has delivered');
+    }
+
+    public function myOrder(){
+
+    $orders = Order::where('user_id',Auth::user()->id)->get();
+
+    return view('site.order.my-order',compact('orders'));
+    }
+
+    public function review( Product $product){
+
+
+    return view('site.review.form',compact('product'));
+    }
+
+    public function storeReview(Request $request,Product $product){
+
+    $request->validate([
+        'rate'=>'required',
+        'message'=>'required'
+    ]);
+
+    $review = new Review();
+    $review->user_id = Auth::user()->id;
+    $review->product_id = $product->id;
+    $review->rate = $request['rate'];
+    $review->message = $request['message'];
+
+    $review->save();
+
+    return redirect()->back()->with('success','your product review has been added');
+
     }
 }

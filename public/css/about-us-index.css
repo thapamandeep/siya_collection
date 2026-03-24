@@ -1,0 +1,134 @@
+/* Page */
+.container.py-4 {
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+/* Title */
+.page-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* Card */
+.table-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+/* Table */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Head */
+.custom-table thead {
+    background: #1e293b;
+    color: #fff;
+}
+
+.custom-table th {
+    padding: 14px;
+    font-size: 14px;
+}
+
+/* Rows */
+.custom-table td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Hover */
+.custom-table tbody tr {
+    transition: 0.3s;
+}
+
+.custom-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Title */
+.title {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Description */
+.desc {
+    color: #555;
+}
+
+/* Image */
+.table-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #eee;
+}
+
+/* No image */
+.no-img {
+    color: #999;
+    font-size: 13px;
+}
+
+/* Buttons */
+.action-btns {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Edit */
+.btn-edit {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(245,158,11,0.3);
+}
+
+/* Delete */
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(239,68,68,0.3);
+}
+
+/* Empty */
+.empty {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+/* Alert */
+.alert-success {
+    border-radius: 10px;
+    background: #ecfdf5;
+    border: 1px solid #10b981;
+    color: #065f46;
+}

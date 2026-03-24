@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{asset('css/category-table.css')}}">
     <link rel="stylesheet" href="{{asset('css/heroes.css')}}">
     <link rel="stylesheet" href="{{asset('css/order-index.css')}}">
+    <link rel="stylesheet" href="{{asset('css/about-us-form.css')}}">
+    <link rel="stylesheet" href="{{asset('css/about-us-index.css')}}">
+    <link rel="stylesheet" href="{{asset('css/product-index.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>

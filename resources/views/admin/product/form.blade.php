@@ -116,22 +116,7 @@
                 @enderror
             </div>
 
-            <!-- Total Cost -->
-            <div class="form-group">
-                <label for="total_cost">Total Cost (Rs)</label>
-                <input 
-                    type="number" 
-                    id="total_cost" 
-                    name="total_cost" 
-                    value="{{ old('total_cost') }}" 
-                    placeholder="Enter total cost"
-                    min="0"
-                    step="0.01"
-                >
-                @error('total_cost')
-                    <small class="error">{{ $message }}</small>
-                @enderror
-            </div>
+        
 
             <!-- Submit Button -->
             <div class="form-group">

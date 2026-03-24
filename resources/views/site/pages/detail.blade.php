@@ -63,6 +63,45 @@
 
     </div>
 
+ 
+</div>
+
+   <!-- =========================
+     REVIEWS SECTION
+========================= -->
+<div class="reviews-section">
+
+    <h2>Customer Reviews</h2>
+
+    @if($product->reviews->count() > 0)
+
+        @foreach($reviews as $review)
+
+            <div class="review-item">
+
+                <div class="review-header">
+                    <strong>{{ $review->user->name ?? 'User' }}</strong>
+                    <span class="review-rating">
+                        ⭐ {{ $review->rate }}
+                    </span>
+                </div>
+
+                <p class="review-message">
+                    {{ $review->message }}
+                </p>
+
+                <small class="review-date">
+                    {{ $review->created_at->format('d M Y') }}
+                </small>
+
+            </div>
+
+        @endforeach
+
+    @else
+        <p class="no-reviews">No reviews yet 😢</p>
+    @endif
+
 </div>
 
 @endsection

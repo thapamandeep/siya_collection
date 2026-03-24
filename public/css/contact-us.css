@@ -1,0 +1,196 @@
+/* =========================
+   CONTACT CONTAINER (MATCH ABOUT)
+========================= */
+.contact-wrapper {
+    position: relative;
+    padding: 80px 20px;
+    min-height: 100vh;
+
+    /* Background logo like About Us */
+    background-image: url('/img/siya-collection-logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 900px;
+}
+
+/* White overlay (same as about) */
+.contact-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.92);
+    z-index: 1;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+.contact-left,
+.contact-right {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* =========================
+   LEFT SIDE (FORM)
+========================= */
+.contact-left {
+    flex: 1;
+}
+
+.contact-header h2 {
+    font-size: 38px; /* match about h1 */
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.contact-header p {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Form fields */
+.contact-row {
+    margin-bottom: 15px;
+}
+
+.contact-row label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-size: 14px;
+}
+
+.contact-row input,
+.contact-row textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Button */
+.send-btn {
+    background: #111;
+    color: #fff;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background: orange; /* matches about highlight color */
+}
+
+/* Error + success */
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+
+.success-message {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   RIGHT SIDE (IMAGE)
+========================= */
+.contact-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* important */
+    padding-left: 40px; /* space from divider */
+}
+
+/* Vertical divider line */
+.contact-right::before {
+    content: "";
+    position: absolute;
+    left: 200px;               /* sticks to left edge of right section */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 200px;
+    height: 934px;           /* not full height, looks modern */
+    background: orange;
+    border-radius: 2px;
+}
+
+
+.contact-right img {
+    width: 100%;
+    max-width: 740px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+/* Hover like about image */
+.contact-right img:hover {
+    transform: scale(1.05);
+}
+
+/* IMAGE + LINE WRAPPER */
+.contact-image-box {
+    position: relative; /* important */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-image-box img {
+    position: relative;
+    z-index: 2; /* image above line */
+    width: 100%;
+    max-width: 700px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.contact-image-box img:hover {
+    transform: scale(1.05);
+}
+
+/* Horizontal line */
+.vertical-line {
+    position: absolute;
+    right: 200px;   /* move it slightly behind/right side */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 100px;
+    height: 100%;
+    background: orange;
+    border-radius: 2px;
+
+    z-index: 1; /* behind the image */
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-header h2 {
+        font-size: 30px;
+    }
+}

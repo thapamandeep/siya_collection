@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendOtpMail;
+use App\Mail\ContactUs;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
@@ -116,6 +117,25 @@ class AuthController extends Controller
     Session::flash('success','your user account has been updated');
 
     return redirect()->route('get.login.page');
+    }
+
+    public function contactStore(Request $request){
+
+    $request->validate([
+        'name'=>'required',
+        'email'=>'required|email',
+        'message'=>'required',
+    ]);
+
+    $data = [
+        'name' => $request->name,
+        'email'=> $request->email,
+        'message'=> $request->message,
+
+    ];
+    Mail::to('mgrmandeep07@gmail.com')->send(new ContactUs($data));
+
+    return redirect()->back()->with('success','Thank you for contact with us');
     }
 }
    
