@@ -55,6 +55,40 @@ class AdminController extends Controller
     return view('admin.category.index', compact('categories'));
     }
 
+    public function editCategory(Category $category){
+
+    return view('admin.category.edit',compact('category'));
+    }
+
+    public function updateCategory(Request $request, Category $category){
+
+    $data = $request->validate([
+        'name'=>'required|string',
+        'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    ]);
+
+    if($request->hasFile('image')){
+
+    $file = $request->file('image');
+    $newImage = time().'.'.$file->getClientOriginalExtension();
+    $file->storeAs('album',$newImage,'public');
+    }
+
+    $category->name = $data['name'];
+    $category->image = $newImage;
+
+    $category->save();
+
+    return redirect()->back()->with('success','category has been updated');
+    
+    }
+
+public function deleteCategory(Category $category){
+
+$category->delete();
+
+return redirect()->back()->with('success','category has been deleted');
+}
     // ------------Product-----------------//
 
  

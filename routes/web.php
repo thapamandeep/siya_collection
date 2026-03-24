@@ -17,6 +17,8 @@ Route::get('/admin-dashboard',[AdminController::class,'dasboard'])->name('get.da
 Route::get('/category-form',[AdminController::class,'addCategory'])->name('get.category.form')->middleware('admin');
 Route::post('/store-categorey',[AdminController::class,'storeCategory'])->name('post.category')->middleware('admin');
 Route::get('/category-table',[AdminController::class,'categoryTable'])->name('get.category.table')->middleware('admin');
+Route::get('/edit-category/{category}',[AdminController::class,'editCategory'])->name('get.edit.category')->middleware('admin');
+Route::post('update-category/{category}',[AdminController::class,'updateCategory'])->name('post.update.category')->middleware('admin');
 
 // ----------------for the product----------------//
 Route::get('/product-form',[AdminController::class,'addProduct'])->name('get.product.form')->middleware('admin');
@@ -47,7 +49,7 @@ Route::get('/hero-edit/{hero}',[AdminController::class,'editHero'])->name('get.e
 Route::post('/update-hero/{hero}',[AdminController::class,'updateHero'])->name('post.update.hero')->middleware('admin');
 
 // -------------------profile-----------------------//
-Route::get('/edit-prrofile{profile}',[UserController::class,'editProfile'])->name('get.edit.profile')->middleware('user');
+Route::get('/edit-prrofile/{profile}',[UserController::class,'editProfile'])->name('get.edit.profile')->middleware('user');
 
 // ----------------------for password--------------------------/
 Route::get('/password',[AuthController::class,'forgotPassword'])->name('get.forgot.password');

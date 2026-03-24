@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="profile-container">
+<div class="about-container">
 
-    <div class="profile-card">
+    <div class="about-wrapper">
 
         <div class="profile-header">
             <span onclick="history.back()" class="close-btn">&times;</span>

@@ -69,12 +69,15 @@
 
                     
                     @if(Auth::check())
+                     <td> 
                         @if($order->status == 'delivered')
-                 <td> <a href="{{route('get.product.review',$order->product->id)}}">  <button>Review</button></a></td>
+                <a href="{{route('get.product.review',$order->product->id)}}">  <button>Review</button></a>
 
                    @else
-                        <Button>Delete</Button>
+                        <Button>Remove</Button>
+                        
                    @endif
+                    </td>
                    @endif
 
                 </tr>

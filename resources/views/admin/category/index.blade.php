@@ -41,9 +41,9 @@
 
 <td class="actions">
 
-<a href="#" class="edit-btn">Edit</a>
+<a href="{{route('get.edit.category',$category->id)}}" class="edit-btn">Edit</a>
 
-<button class="delete-btn">Delete</button>
+<a href="{{route('get.delete.category',$category->id)}}">button class="delete-btn">Delete</button></a>
 </form>
 
 </td>

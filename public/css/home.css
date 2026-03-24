@@ -3,7 +3,7 @@
 ========================= */
 :root {
     --bg: #f6f8fc;
-    --card-radius: 18px;
+    --card-radius: 14px;
     --text-dark: #0f172a;
     --text-light: #64748b;
 }
@@ -13,7 +13,7 @@
 ========================= */
 .content {
     margin-left: 250px;
-    padding: 35px;
+    padding: 30px;
     background: var(--bg);
     min-height: 100vh;
     font-family: 'Inter', Arial, sans-serif;
@@ -21,111 +21,85 @@
 
 /* Heading */
 .content h1 {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 6px;
-    letter-spacing: -0.5px;
 }
 
 .content p {
     color: var(--text-light);
-    margin-bottom: 30px;
-    font-size: 15px;
+    margin-bottom: 25px;
+    font-size: 14px;
 }
 
 /* =========================
-   FLEX ROW (SCROLL SMOOTH)
+   DASHBOARD CARDS (ONE ROW)
 ========================= */
 .dashboard-cards {
     display: flex;
-    gap: 22px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
+    flex-wrap: nowrap;     /* single row */
+    gap: 20px;
+    overflow-x: auto;      /* scroll if overflow */
     padding-bottom: 10px;
 }
 
-/* Custom Scrollbar */
-.dashboard-cards::-webkit-scrollbar {
-    height: 6px;
-}
-.dashboard-cards::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 10px;
-}
-
 /* =========================
-   CARD DESIGN
+   CARD DESIGN (RECTANGLE)
 ========================= */
 .card {
-    min-width: 230px;
-    flex: 0 0 230px;
-    padding: 22px;
+    flex: 0 0 260px;
+    height: 90px;
+    padding: 18px;
     border-radius: var(--card-radius);
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
     overflow: hidden;
-    transition: all 0.35s ease;
-    
-    /* Modern shadow */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
 }
 
-/* Glass highlight */
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        rgba(255,255,255,0.15),
-        transparent
-    );
-    opacity: 0;
-    transition: 0.4s;
-}
-
-/* Hover animation */
+/* Hover */
 .card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-}
-
-.card:hover::before {
-    opacity: 1;
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
 /* =========================
-   CARD CONTENT
+   CARD HEADER
 ========================= */
 .card h3 {
-    font-size: 15px;
-    margin-bottom: 16px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
-    opacity: 0.9;
+    opacity: 0.95;
+    margin: 0;
 }
 
-/* Icon (modern circle) */
+/* Icon */
 .card h3 i {
-    font-size: 14px;
+    font-size: 18px;
     padding: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(5px);
-}
-
-/* Number */
-.card p {
-    font-size: 150px;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.2);
 }
 
 /* =========================
-   GRADIENT COLORS (MODERN)
+   CARD VALUE (IMPORTANT FIX)
+========================= */
+.dashboard-cards .card p {
+    font-size: 40px;
+    font-weight: 800;
+    color: #ffffff;   /* ✅ always white */
+    margin: 0;
+}
+
+/* =========================
+   GRADIENT COLORS
 ========================= */
 .card:nth-child(1) {
     background: linear-gradient(135deg, #6366f1, #4f46e5);
@@ -143,14 +117,6 @@
     background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
-.card:nth-child(5) {
-    background: linear-gradient(135deg, #a855f7, #9333ea);
-}
-
-.card:nth-child(6) {
-    background: linear-gradient(135deg, #ec4899, #db2777);
-}
-
 /* =========================
    RESPONSIVE
 ========================= */
@@ -158,5 +124,18 @@
     .content {
         margin-left: 0;
         padding: 20px;
+    }
+
+    .card {
+        flex: 0 0 220px;
+        height: 110px;
+    }
+
+    .dashboard-cards {
+        gap: 15px;
+    }
+
+    .dashboard-cards .card p {
+        font-size: 22px;
     }
 }
