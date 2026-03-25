@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\Hero;
 use App\Models\About;
 use App\Models\Review;
+use App\Models\Category;
 
 
 class UserController extends Controller
@@ -17,12 +18,12 @@ class UserController extends Controller
 
 public function front(){
 
-$products = Product::all();
+$categories = Category::with('products')->get();
 $roles = Role::all();
 
 $heroes = Hero::all();
 
-return view('site.pages.home', compact('heroes','products','roles'));
+return view('site.pages.home', compact('heroes','categories','roles'));
 }
 
     public function register(){
@@ -74,6 +75,8 @@ return view('site.pages.home', compact('heroes','products','roles'));
     }
 
     public function detail(Product $product){
+
+    $product->load('sizes');
 
     $reviews = Review::all();
 

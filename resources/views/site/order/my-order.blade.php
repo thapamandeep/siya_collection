@@ -18,6 +18,7 @@
                     <th>Product</th>
                     <th>Image</th>
                     <th>Quantity</th>
+                    <th>Size</th>
                     <th>Price</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -38,6 +39,8 @@
                     </td>
 
                     <td>{{ $order->quantity }}</td>
+
+                    <td>{{$order->size->name}}</td>
 
                     @php
                     

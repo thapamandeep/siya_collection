@@ -23,6 +23,7 @@
 <th>Image</th>
 <th>User Name</th>
 <th>Title</th>
+<th>Size</th>
 <th>Quantity</th>
 <th>Cost</th>
 <th>Category</th>
@@ -50,6 +51,8 @@
 <td>{{ optional($order->user)->name ?? 'N/A' }}</td>
 
 <td>{{ optional($order->product)->name ?? 'Deleted Product' }}</td>
+
+<td>{{$order->size->name}}</td>
 
 <td>{{ $order->quantity }}</td>
 

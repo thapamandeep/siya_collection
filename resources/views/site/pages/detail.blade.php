@@ -45,6 +45,30 @@
 
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
+                <!-- SIZE SELECT -->
+<div class="sizes">
+    <label>Select Size</label>
+
+    <div class="size-options">
+        @foreach($product->sizes as $size)
+            <label class="size-option">
+
+                <input 
+                    type="radio" 
+                    name="size_id" 
+                    value="{{ $size->id }}"
+                >
+
+                <span>
+                    {{ $size->name }} 
+                 
+                </span>
+
+            </label>
+        @endforeach
+    </div>
+</div>
+
                 <!-- QUANTITY -->
                 <div class="qty">
                     <label>Quantity</label>

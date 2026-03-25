@@ -14,12 +14,17 @@ class OrderController extends Controller
 {
     public function markUserProcessing($orderId){
 
-    $order = Order::with('user','product')->findOrFail($orderId);
+    $order = Order::with('user','product','size')->findOrFail($orderId);
 
     $order->status = 'processing';
     $order->save();
 
-    $user = $order->user ?? Auth::user();
+    $user = $order->user;
+
+
+        if (!$user) {
+            return back()->with('error','User not found for this order');
+        }
 
     Mail::to($user->email)->send(new OrderUpdateStatus($order));
 
@@ -28,12 +33,17 @@ class OrderController extends Controller
 
      public function markUserShipping($orderId){
 
-    $order = Order::with('user','product')->findOrFail($orderId);
+    $order = Order::with('user','product','size')->findOrFail($orderId);
 
     $order->status = 'shipping';
     $order->save();
 
-    $user = $order->user ?? Auth::user();
+    $user = $order->user;
+
+
+        if (!$user) {
+            return back()->with('error','User not found for this order');
+        }
 
     Mail::to($user->email)->send(new OrderUpdateStatus($order));
 
@@ -42,12 +52,17 @@ class OrderController extends Controller
 }
  public function markUserDelivered($orderId){
 
-    $order = Order::with('user','product')->findOrFail($orderId);
+    $order = Order::with('user','product','size')->findOrFail($orderId);
 
     $order->status = 'delivered';
     $order->save();
 
-    $user = $order->user ?? Auth::user();
+    $user = $order->user;
+
+
+        if (!$user) {
+            return back()->with('error','User not found for this order');
+        }
 
     Mail::to($user->email)->send(new OrderUpdateStatus($order));
 

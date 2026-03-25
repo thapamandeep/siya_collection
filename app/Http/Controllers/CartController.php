@@ -16,6 +16,7 @@ class CartController extends Controller
 
     $data = $request->validate([
         'quantity'=>'required|integer|min:1',
+           'size_id'  => 'required|exists:sizes,id',
     ]);
 
     if($data['quantity']>$product->quantity){
@@ -28,6 +29,7 @@ class CartController extends Controller
     $carts = new Cart();
     $carts->user_id = Auth::user()->id;
     $carts->product_id = $product->id;
+    $carts->size_id = $data['size_id'];
     $carts->quantity = $data['quantity'];
     $carts->total_cost = $total_cost;
 
@@ -60,6 +62,7 @@ class CartController extends Controller
 
    $orders->user_id = $cart->user_id;
    $orders->product_id = $cart->product_id;
+   $orders->size_id = $cart->size_id;
    $orders->quantity = $cart->quantity;
    $orders->status = 'pending';
 

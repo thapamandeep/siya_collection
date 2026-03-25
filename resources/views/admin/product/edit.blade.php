@@ -49,6 +49,24 @@
                 @enderror
             </div>
 
+            <div class="size-selector">
+
+    @foreach($sizes as $size)
+        <div class="size-row">
+            <label>{{ $size->name }}</label>
+
+            <input 
+                type="number" 
+                name="sizes[{{ $size->id }}]" 
+                placeholder="Qty"
+                min="0"
+                style="width:80px; margin-left:5px;"
+            >
+        </div>
+    @endforeach
+
+</div><br>
+
             <!-- Description -->
             <div class="form-group">
                 <label for="description">Description</label>

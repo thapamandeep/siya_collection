@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Size;
 
 class Cart extends Model
 {
     protected $fillable = [
         'user_id',
         'product_id',
+        'size_id',
         'quantity',
         'total_cost',
     ];
@@ -24,4 +26,9 @@ class Cart extends Model
 
     return $this->belongsTo(Product::class,'product_id');
     }
+
+    public function size()
+{
+    return $this->belongsTo(Size::class);
+}
 }

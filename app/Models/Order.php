@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Size;
 
 class Order extends Model
 {
@@ -12,6 +13,7 @@ class Order extends Model
         'quantity',
         'user_id',
         'product_id',
+        'size_id',
     ];
 
     public function product(){
@@ -23,6 +25,11 @@ class Order extends Model
 public function user(){
 
 return $this->belongsTo(User::class,'user_id');
+}
+
+public function size()
+{
+    return $this->belongsTo(Size::class);
 }
 
 

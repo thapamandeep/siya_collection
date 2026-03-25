@@ -77,19 +77,24 @@
 </div>
 
 
+@foreach($categories as $category)
+
 <section class="shop-section">
 
-    <h2 class="shop-title">Our Products</h2>
+    <!-- ✅ Category Name -->
+    <h2 class="shop-title">{{ $category->name }}</h2>
 
     <div class="shop-grid">
 
-        @foreach($products as $product)
+        @foreach($category->products as $product)
 
         <div class="shop-card">
 
-           <a href="{{route('get.detail',$product->id)}}"> <div class="shop-image">
-                <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
-            </div></a>
+            <a href="{{route('get.detail',$product->id)}}">
+                <div class="shop-image">
+                    <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
+                </div>
+            </a>
 
             <div class="shop-info">
                 <h3>{{ $product->name }}</h3>
@@ -109,4 +114,6 @@
     </div>
 
 </section>
+
+@endforeach
 @endsection

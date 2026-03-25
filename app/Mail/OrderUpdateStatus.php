@@ -16,16 +16,16 @@ class OrderUpdateStatus extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $orders;
+    public $order;
     public $user;
     public $messageText;
     /**
      * Create a new message instance.
      */
-    public function __construct($orders, $message = "")
+    public function __construct($order, $message = "")
     {
-        $this->orders = $orders;
-        $this->user = $orders[0]->user ?? Auth::user();
+        $this->order = $order;
+        $this->user = $order->user;
         $this->messageText = $message; 
     }
     
@@ -48,7 +48,7 @@ class OrderUpdateStatus extends Mailable
         return new Content(
             view: 'emails.orders-status',
             with:[
-                'data'=>$this->orders,
+                'data'=>$this->order,
                 'user'=>$this->user,
                 'customMessage'=>$this->messageText,
             ],

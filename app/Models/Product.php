@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Carts;
 use App\Models\Review;
+use App\Models\Size;
 
 class Product extends Model
 {
@@ -31,5 +32,10 @@ class Product extends Model
    public function reviews(){
 
    return $this->hasMany(Review::class,);
+   }
+
+   public function sizes(){
+
+   return $this->belongsToMany(Size::class,);
    }
 }

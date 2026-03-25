@@ -19,6 +19,7 @@ Route::post('/store-categorey',[AdminController::class,'storeCategory'])->name('
 Route::get('/category-table',[AdminController::class,'categoryTable'])->name('get.category.table')->middleware('admin');
 Route::get('/edit-category/{category}',[AdminController::class,'editCategory'])->name('get.edit.category')->middleware('admin');
 Route::post('update-category/{category}',[AdminController::class,'updateCategory'])->name('post.update.category')->middleware('admin');
+Route::get('delete-cayegory/{category}',[AdminController::class,'deleteCategory'])->name('get.delete.category')->middleware('admin');
 
 // ----------------for the product----------------//
 Route::get('/product-form',[AdminController::class,'addProduct'])->name('get.product.form')->middleware('admin');

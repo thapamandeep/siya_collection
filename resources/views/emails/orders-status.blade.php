@@ -19,13 +19,20 @@
 
         <p>Your order has been updated.</p>
 
-     <p>Product: <span style="color:green">{{$data->product->name}}</span></p>
+     <p>Product: <span style="color:green">{{$order->product->name}}</span></p>
+
+     <p>Size: 
+            <span style="color:green">
+                {{ $order->size->name ?? 'N/A' }}
+            </span>
+        </p>
+
      
-     <p>Quantity:  <span style="color:green">{{$data->quantity}}</span></p>
+     <p>Quantity:  <span style="color:green">{{$order->quantity}}</span></p>
 
-         <p>Cost: <span style="color:green">{{$data->product->cost * $data->quantity}}</span></p>
+         <p>Cost: <span style="color:green">{{$order->product->cost * $data->quantity}}</span></p>
 
-        <p>Status:  <span style="color:green">{{ strtoupper($data->status) ?? ""}}</span></p>
+        <p>Status:  <span style="color:green">{{ strtoupper($order->status) ?? ""}}</span></p>
 
         <p style="color:green; font-size:bold">Thank you for shopping with us.</p>
         <div style="

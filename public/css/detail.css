@@ -253,6 +253,50 @@
     font-size: 14px;
 }
 
+
+/* =========================
+   SIZE SELECTOR
+========================= */
+/* SIZE SELECTOR */
+.sizes {
+    margin-bottom: 20px;
+}
+
+/* only main label */
+.sizes > label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* flex layout */
+.size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* hide radio */
+.size-option input {
+    display: none;
+}
+
+/* box */
+.size-option span {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* selected */
+.size-option input:checked + span {
+    background: #2563eb;
+    color: #fff;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */

@@ -43,7 +43,7 @@
 
 <a href="{{route('get.edit.category',$category->id)}}" class="edit-btn">Edit</a>
 
-<a href="{{route('get.delete.category',$category->id)}}">button class="delete-btn">Delete</button></a>
+<a href="{{route('get.delete.category',$category->id)}}" class="delete-btn">Delete</a>
 </form>
 
 </td>

@@ -142,6 +142,29 @@ select {
     margin-top: 6px;
 }
 
+.size-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.size-box input {
+    display: none;
+}
+
+.size-box span {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.size-box input:checked + span {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .content {

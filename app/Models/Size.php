@@ -3,17 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Product;
 
-class Category extends Model
+class Size extends Model
 {
+
+use HasFactory;
+
     protected $fillable =[
-        'image',
-        'name',
+     'name'
     ];
 
     public function products(){
 
-    return $this->hasMany(Product::class,'category_id');
+    return $this->belongsToMany(Product::class,);
     }
 }

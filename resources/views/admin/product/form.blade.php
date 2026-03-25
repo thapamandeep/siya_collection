@@ -7,11 +7,7 @@
     <h1>Add New Product</h1>
     <p>Create a new product for your store</p>
 
-    @if(session('success'))
-    <div class="success-message">
-        {{ session('success') }}
-    </div>
-    @endif
+  
 
     <div class="form-container">
 
@@ -52,6 +48,24 @@
                     <small class="error">{{ $message }}</small>
                 @enderror
             </div>
+<!-- ---------------size--------------- -->
+<div class="size-selector">
+
+    @foreach($sizes as $size)
+        <div class="size-row">
+            <label>{{ $size->name }}</label>
+
+            <input 
+                type="number" 
+                name="sizes[{{ $size->id }}]" 
+                placeholder="Qty"
+                min="0"
+                style="width:80px; margin-left:5px;"
+            >
+        </div>
+    @endforeach
+
+</div><br>
 
             <!-- Description -->
             <div class="form-group">

@@ -8,6 +8,7 @@ use \App\Models\Product;
 use \App\Models\Hero;
 use \App\Models\Order;
 use \App\Models\About;
+use \App\Models\Size;
 
 class AdminController extends Controller
 {
@@ -97,43 +98,65 @@ return redirect()->back()->with('success','category has been deleted');
     public function addProduct(){
 
     $categories = Category::all();
-    return view('admin.product.form',compact('categories'));
+    $sizes = Size::all();
+    return view('admin.product.form',compact('categories','sizes'));
     }
-
-   public function storeProduct(Request $request){
+public function storeProduct(Request $request){
 
    $data = $request->validate([
     'name'=>'required|string|max:20',
-    'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:7000',
     'description'=>'required|string|max:2048',
-    'quantity'=>'required|integer|min:1',
     'cost'=>'required|integer',
     'category_id'=>'required|exists:categories,id',
-   
+    'sizes'=>'required|array',
+    'sizes.*' => 'nullable|integer|min:0',
    ]);
-
-   $total_cost = $data['quantity'] * $data['cost'];
 
    $newImage = "";
    if($request->hasFile('image')){
-    $file = $request->file('image');
-    $newImage = time(). '.'.$file->getClientOriginalExtension();
-    $file->storeAs('album',$newImage,'public');
+        $file = $request->file('image');
+        $newImage = time(). '.'.$file->getClientOriginalExtension();
+        $file->storeAs('album',$newImage,'public');
    }
 
+   // ✅ build size data first
+   $sizeData = [];
+   $total_quantity = 0;
+
+   foreach($data['sizes'] as $sizeId => $qty){
+        if($qty > 0){
+            $sizeData[$sizeId] = ['quantity' => $qty];
+            $total_quantity += $qty;
+        }
+   }
+
+   // optional: prevent empty
+   if(empty($sizeData)){
+        return back()->withErrors([
+            'sizes' => 'At least one size must have quantity'
+        ]);
+   }
+
+   // ✅ total cost calculation
+   $total_cost = $total_quantity * $data['cost'];
+
+   // save product
    $products = new Product();
    $products->name = $data['name'];
    $products->image = $newImage;
    $products->description = $data['description'];
-   $products->quantity = $data['quantity'];
+   $products->quantity = $total_quantity;
    $products->cost = $data['cost'];
    $products->total_cost = $total_cost;
    $products->category_id = $data['category_id'];  
-
    $products->save();
 
+   // attach sizes
+   $products->sizes()->attach($sizeData);
+
    return redirect()->back()->with('success','your product has been saved successfully');
-   }
+}
 
    public function productIndex(){
 
@@ -143,50 +166,74 @@ return redirect()->back()->with('success','category has been deleted');
    }
 
    public function editProduct(Product $product){
-
+  $sizes = Size::all();
    $categories = Category::all();
 
-   return view('admin.product.edit',compact('product','categories'));
+   return view('admin.product.edit',compact('product','categories','sizes'));
    }
 
-   public function updateProduct(Request $request,Product $product){
+ public function updateProduct(Request $request, Product $product){
 
    $data = $request->validate([
-      'name'=>'nullable|string|max:20',
-    'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-    'description'=>'nullable|string|max:2048',
-    'quantity'=>'nullable|integer|min:1',
-    'cost'=>'nullable|integer',
-    'category_id'=>'nullable|exists:categories,id',
-   
+      'name' => 'nullable|string|max:20',
+      'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+      'description' => 'nullable|string|max:2048',
+      'cost' => 'nullable|integer',
+      'category_id' => 'nullable|exists:categories,id',
+      'sizes' => 'required|array',
+      'sizes.*' => 'nullable|integer|min:0',
    ]);
 
-    $product->name = $data['name'];
-    $product->description = $data['description'];
-    $product->quantity = $data['quantity'];
-    $product->cost = $data['cost'];
-    $product->category_id = $data['category_id'];
+   // update basic fields
+   if(isset($data['name'])) $product->name = $data['name'];
+   if(isset($data['description'])) $product->description = $data['description'];
+   if(isset($data['cost'])) $product->cost = $data['cost'];
+   if(isset($data['category_id'])) $product->category_id = $data['category_id'];
 
+   // image update
    if($request->hasFile('image')){
-
-   $file = $request->file('image');
-   $newImage = time().'.'.$file->getClientOriginalExtension();
-   $file->storeAs('album',$newImage,'public');
-
-   $product->image = $newImage;
-
+      $file = $request->file('image');
+      $newImage = time().'.'.$file->getClientOriginalExtension();
+      $file->storeAs('album',$newImage,'public');
+      $product->image = $newImage;
    }
 
+   // build size data + total quantity
+   $sizeData = [];
+   $total_quantity = 0;
+
+   foreach($data['sizes'] as $sizeId => $qty){
+      if($qty > 0){
+         $sizeData[$sizeId] = ['quantity' => $qty];
+         $total_quantity += $qty;
+      }
+   }
+
+   // optional validation
+   if(empty($sizeData)){
+      return back()->withErrors([
+         'sizes' => 'At least one size must have quantity'
+      ]);
+   }
+
+   // assign total quantity
+   $product->quantity = $total_quantity;
+
+   // save product
    $product->save();
 
+   // sync sizes (IMPORTANT 🔥)
+   $product->sizes()->sync($sizeData);
+
    return redirect()->back()->with('success','your product has been updated successfully');
- 
-   }
+}
    public function productDelete(Product $product){
 
    $product->delete();
 
    return redirect()->back()->with('success','product has been delete');
+
+   
    }
 
     // ======================hero section======================//
