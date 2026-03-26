@@ -49,22 +49,22 @@
                 @enderror
             </div>
 <!-- ---------------size--------------- -->
-<div class="size-selector">
-
+<div class="size-color-selector">
     @foreach($sizes as $size)
-        <div class="size-row">
-            <label>{{ $size->name }}</label>
-
-            <input 
-                type="number" 
-                name="sizes[{{ $size->id }}]" 
-                placeholder="Qty"
-                min="0"
-                style="width:80px; margin-left:5px;"
-            >
-        </div>
+        <h4>{{ $size->name }}</h4>
+        @foreach($colors as $color)
+            <div class="size-color-row">
+                <label>{{ $color->name }}</label>
+                <input 
+                    type="number" 
+                    name="stock[{{ $size->id }}][{{ $color->id }}]" 
+                    placeholder="Qty"
+                    min="0"
+                    style="width:80px; margin-left:5px;"
+                >
+            </div>
+        @endforeach
     @endforeach
-
 </div><br>
 
             <!-- Description -->

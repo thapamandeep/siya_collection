@@ -1,176 +1,196 @@
 /* =========================
-   CONTENT AREA
-========================= */
-.content {
-    padding: 30px;
-    background: #f5f7fb;
-    min-height: 100vh;
-    font-family: 'Inter', Arial, sans-serif;
-}
-
-/* =========================
-   TITLE
-========================= */
-.content h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: #111827;
-}
-
-.content p {
-    color: #6b7280;
-    margin-bottom: 20px;
-}
-
-/* =========================
-   SUCCESS MESSAGE
-========================= */
-.success-message {
-    background: #dcfce7;
-    color: #166534;
-    padding: 12px 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    border: 1px solid #86efac;
-}
-
-/* =========================
    TABLE CONTAINER
 ========================= */
 .table-container {
     background: #fff;
-    padding: 20px;
+    padding: 10px;             /* padding ठुलो */
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.05);
     overflow-x: auto;
+    width: 100%;
+    max-width: 1200px;         /* table box ठूलो */
+    margin: auto;              /* center align */
 }
 
 /* =========================
-   TABLE
+   ORDERS TABLE
 ========================= */
-.category-table {
+.orders-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 900px;
+    font-size: 14px;           /* readability बढाउने */
+    min-width: 1100px;         /* table wide */
+    font-family: 'Inter', Arial, sans-serif;
 }
 
-/* HEADER */
-.category-table thead {
-    background: #111827;
+/* TABLE HEADER */
+.orders-table thead {
+    background: #f8fafc;
 }
 
-.category-table th {
-    color: #fff;
+.orders-table th {
     text-align: left;
-    padding: 12px;
-    font-size: 13px;
+    padding: 12px 15px;
+    color: #1e293b;
     font-weight: 600;
-}
-
-/* ROW */
-.category-table td {
-    padding: 12px;
     font-size: 13px;
-    color: #374151;
-    border-bottom: 1px solid #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
 }
 
-/* ROW HOVER */
-.category-table tbody tr:hover {
+/* TABLE ROWS */
+.orders-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    vertical-align: middle;
+}
+
+/* ID column small & center */
+.orders-table th:first-child,
+.orders-table td:first-child {
+    width: 50px;
+    text-align: center;
+}
+
+/* Row hover & zebra */
+.orders-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.orders-table tbody tr:hover {
     background: #f9fafb;
 }
 
-/* =========================
-   IMAGE
-========================= */
-.cat-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 6px;
-    background: #f3f4f6;
-    padding: 5px;
+.orders-table tbody tr:nth-child(even) {
+    background: #fcfcfd;
 }
 
 /* =========================
-   STATUS TEXT (IMPROVED)
+   PRODUCT IMAGE
 ========================= */
-.category-table td:nth-child(8) {
+.order-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #f1f5f9;
+    transition: transform 0.25s ease;
+}
+
+.order-img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   COLOR BUBBLE
+========================= */
+.color-bubble {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+/* =========================
+   STATUS
+========================= */
+.status {
     font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-transform: capitalize;
+    font-size: 12px;
 }
 
-/* Optional colored status */
-.category-table td:nth-child(8):contains("pending") {
-    color: #f59e0b;
+.status.pending {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status.processing {
+    background: #fef9c3;
+    color: #78350f;
+}
+
+.status.shipping {
+    background: #bfdbfe;
+    color: #1e40af;
+}
+
+.status.delivered {
+    background: #dcfce7;
+    color: #166534;
 }
 
 /* =========================
-   ACTION BUTTONS (FIXED 🔥)
+   ACTION BUTTONS
 ========================= */
 .action-buttons {
-    display: flex;
-    gap: 6px;
+    display: flex;             /* left-to-right */
+    gap: 8px;                  /* space between buttons */
     align-items: center;
+    flex-wrap: nowrap;          /* one row */
 }
 
-/* IMPORTANT FIX */
-.category-table button {
-    width: auto !important;   /* 🔥 fix full width issue */
-    padding: 5px 10px;
-    font-size: 11px;
-    border: none;
-    border-radius: 5px;
+.action-buttons a,
+.action-buttons button {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    padding: 0 14px;
+    font-size: 13px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
     white-space: nowrap;
-    transition: 0.2s ease;
 }
 
-/* Processing */
-.category-table .btn-processing {
-    background: #facc15;
-    color: #111;
+/* Different colors for each button */
+.btn-processing { background-color: #facc15; color: #111; }
+.btn-shipping { background-color: #3b82f6; color: #fff; }
+.btn-delivered { background-color: #22c55e; color: #fff; }
+
+/* Hover effect */
+.action-buttons a:hover,
+.action-buttons button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-/* Shipping */
-.category-table .btn-shipping {
-    background: #3b82f6;
-    color: #fff;
+/* =========================
+   SCROLLBAR
+========================= */
+.table-container::-webkit-scrollbar {
+    height: 6px;
 }
 
-/* Delivered */
-.category-table .btn-delivered {
-    background: #22c55e;
-    color: #fff;
-}
-
-/* Hover */
-.category-table button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+.table-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
+@media (max-width: 1024px) {
+    .orders-table { min-width: 900px; font-size: 13px; }
+    .order-img { width: 36px; height: 36px; }
+    .action-buttons a,
+    .action-buttons button { height: 28px; font-size: 12px; padding: 0 10px; }
+}
+
 @media (max-width: 768px) {
-    .content {
-        padding: 15px;
-    }
-
-    .category-table th,
-    .category-table td {
-        padding: 8px;
-        font-size: 12px;
-    }
-
-    .cat-img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .action-buttons {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    .orders-table { font-size: 12px; min-width: 700px; }
+    .order-img { width: 32px; height: 32px; }
+    .action-buttons a,
+    .action-buttons button { height: 26px; font-size: 11px; padding: 0 8px; }
 }

@@ -26,6 +26,7 @@
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Size</th>
+                        <th>Color</th>
                         <th>Total</th>
                         <th>Action</th>
                     </tr>
@@ -52,6 +53,7 @@
                             <td>{{ $cart->quantity }}</td>
 
                             <td>{{$cart->size->name}}</td>
+                            <td>{{$cart->color->name}}</td>
 
                             <td>Rs. {{ $cart->total_cost }}</td>
 

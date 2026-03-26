@@ -15,8 +15,9 @@ use HasFactory;
      'name'
     ];
 
-    public function products(){
-
-    return $this->belongsToMany(Product::class,);
-    }
+  public function products(){
+    return $this->belongsToMany(Product::class,'product_size_color')
+                ->withPivot('quantity')
+                ->withTimestamps();
+}
 }

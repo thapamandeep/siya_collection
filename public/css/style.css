@@ -203,6 +203,28 @@ body {
     background: #2563eb;
     transform: translateY(-2px);
 }
+/* ============================
+   PRODUCT QUANTITY NUMBER
+============================ */
+.shop-action {
+    position: relative; /* allow positioning */
+}
+
+/* ============================
+   PRODUCT QUANTITY NUMBER STYLING
+============================ */
+.shop-quantity {
+    position: absolute;
+    bottom: 8px;          /* adjust vertical position */
+    right: 12px;          /* adjust horizontal position */
+    font-size: 50px;      /* bigger number */
+    font-weight: 800;     /* bold */
+    color: orange;        /* your chosen color */
+    font-family: 'Playfair Display', serif; /* stylish font */
+    pointer-events: none; /* won’t block button clicks */
+    line-height: 1;
+    letter-spacing: 1px;  /* slight spacing for style */
+}
 
 /* ============================
    FOOTER

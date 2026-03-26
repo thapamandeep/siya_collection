@@ -9,12 +9,15 @@ use \App\Models\Hero;
 use \App\Models\Order;
 use \App\Models\About;
 use \App\Models\Size;
+use \App\Models\Color;
 
 class AdminController extends Controller
 {
     public function dasboard(){
 
-    return view('admin.pages.home');
+    $sizes = Size::all();
+
+    return view('admin.pages.home',compact('sizes'));
     }
 
     // =================category====================//
@@ -99,63 +102,69 @@ return redirect()->back()->with('success','category has been deleted');
 
     $categories = Category::all();
     $sizes = Size::all();
-    return view('admin.product.form',compact('categories','sizes'));
+    $colors = Color::all();
+    return view('admin.product.form',compact('categories','sizes','colors'));
     }
-public function storeProduct(Request $request){
+public function storeProduct(Request $request)
+{
+    // ✅ Validation
+    $data = $request->validate([
+        'name' => 'required|string|max:20',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:7000',
+        'description' => 'required|string|max:2048',
+        'cost' => 'required|integer',
+        'category_id' => 'required|exists:categories,id',
+        'total_cost'=>'nullable',
+        'stock' => 'required|array', // stock[size_id][color_id] = quantity
+    ]);
 
-   $data = $request->validate([
-    'name'=>'required|string|max:20',
-    'image'=>'required|image|mimes:jpeg,png,jpg,gif,webp|max:7000',
-    'description'=>'required|string|max:2048',
-    'cost'=>'required|integer',
-    'category_id'=>'required|exists:categories,id',
-    'sizes'=>'required|array',
-    'sizes.*' => 'nullable|integer|min:0',
-   ]);
-
-   $newImage = "";
-   if($request->hasFile('image')){
+    // ✅ Handle image upload
+    $newImage = "";
+    if ($request->hasFile('image')) {
         $file = $request->file('image');
-        $newImage = time(). '.'.$file->getClientOriginalExtension();
-        $file->storeAs('album',$newImage,'public');
-   }
+        $newImage = time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('album', $newImage, 'public');
+    }
 
-   // ✅ build size data first
-   $sizeData = [];
-   $total_quantity = 0;
+    // ✅ Create product
+    $product = new Product();
+    $product->name = $data['name'];
+    $product->image = $newImage;
+    $product->description = $data['description'];
+    $product->cost = $data['cost'];
+    $product->category_id = $data['category_id'];
+    $product->quantity = 0; // Will calculate below
+    $product->save();
 
-   foreach($data['sizes'] as $sizeId => $qty){
-        if($qty > 0){
-            $sizeData[$sizeId] = ['quantity' => $qty];
-            $total_quantity += $qty;
+    // ✅ Attach stock (size + color)
+    $total_quantity = 0;
+
+    foreach ($data['stock'] as $sizeId => $colors) {
+        foreach ($colors as $colorId => $qty) {
+            if ($qty > 0) {
+                $product->colors()->attach($colorId, [
+                    'size_id' => $sizeId,
+                    'quantity' => $qty
+                ]);
+                $total_quantity += $qty;
+            }
         }
-   }
+    }
 
-   // optional: prevent empty
-   if(empty($sizeData)){
+    // ✅ Optional: Prevent empty stock
+    if ($total_quantity == 0) {
+        $product->delete();
         return back()->withErrors([
-            'sizes' => 'At least one size must have quantity'
+            'stock' => 'At least one size & color must have quantity.'
         ]);
-   }
+    }
 
-   // ✅ total cost calculation
-   $total_cost = $total_quantity * $data['cost'];
+    // ✅ Update total quantity and total cost
+    $product->quantity = $total_quantity;
+    $product->total_cost = $total_quantity * $data['cost'];
+    $product->save();
 
-   // save product
-   $products = new Product();
-   $products->name = $data['name'];
-   $products->image = $newImage;
-   $products->description = $data['description'];
-   $products->quantity = $total_quantity;
-   $products->cost = $data['cost'];
-   $products->total_cost = $total_cost;
-   $products->category_id = $data['category_id'];  
-   $products->save();
-
-   // attach sizes
-   $products->sizes()->attach($sizeData);
-
-   return redirect()->back()->with('success','your product has been saved successfully');
+    return redirect()->back()->with('success', 'Your product has been saved successfully with size & color stock!');
 }
 
    public function productIndex(){
@@ -168,73 +177,85 @@ public function storeProduct(Request $request){
    public function editProduct(Product $product){
   $sizes = Size::all();
    $categories = Category::all();
+   $colors = Color::all();
 
-   return view('admin.product.edit',compact('product','categories','sizes'));
+   return view('admin.product.edit',compact('product','categories','sizes','colors'));
    }
+public function updateProduct(Request $request, Product $product)
+{
+    // ✅ Validate input
+    $data = $request->validate([
+        'name' => 'nullable|string|max:20',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        'description' => 'nullable|string|max:2048',
+        'cost' => 'nullable|integer',
+        'category_id' => 'nullable|exists:categories,id',
+        'stock' => 'nullable|array', // stock[size_id][color_id] = quantity
+    ]);
 
- public function updateProduct(Request $request, Product $product){
+    // -------------------------------
+    // 1️⃣ Update basic fields
+    // -------------------------------
+    if (isset($data['name'])) $product->name = $data['name'];
+    if (isset($data['description'])) $product->description = $data['description'];
+    if (isset($data['cost'])) $product->cost = $data['cost'];
+    if (isset($data['category_id'])) $product->category_id = $data['category_id'];
 
-   $data = $request->validate([
-      'name' => 'nullable|string|max:20',
-      'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-      'description' => 'nullable|string|max:2048',
-      'cost' => 'nullable|integer',
-      'category_id' => 'nullable|exists:categories,id',
-      'sizes' => 'required|array',
-      'sizes.*' => 'nullable|integer|min:0',
-   ]);
+    // -------------------------------
+    // 2️⃣ Update image if uploaded
+    // -------------------------------
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $newImage = time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('album', $newImage, 'public');
+        $product->image = $newImage;
+    }
 
-   // update basic fields
-   if(isset($data['name'])) $product->name = $data['name'];
-   if(isset($data['description'])) $product->description = $data['description'];
-   if(isset($data['cost'])) $product->cost = $data['cost'];
-   if(isset($data['category_id'])) $product->category_id = $data['category_id'];
+    // -------------------------------
+    // 3️⃣ Handle stock (size + color)
+    // -------------------------------
+    $total_quantity = 0;
 
-   // image update
-   if($request->hasFile('image')){
-      $file = $request->file('image');
-      $newImage = time().'.'.$file->getClientOriginalExtension();
-      $file->storeAs('album',$newImage,'public');
-      $product->image = $newImage;
-   }
+    if (isset($data['stock']) && is_array($data['stock'])) {
+        // ✅ Remove old pivot entries first
+        $product->colors()->detach();
 
-   // build size data + total quantity
-   $sizeData = [];
-   $total_quantity = 0;
+        foreach ($data['stock'] as $sizeId => $colors) {
+            foreach ($colors as $colorId => $qty) {
+                $qty = (int)$qty;
+                if ($qty > 0) {
+                    $product->colors()->attach($colorId, [
+                        'size_id' => $sizeId,
+                        'quantity' => $qty
+                    ]);
+                    $total_quantity += $qty;
+                }
+            }
+        }
+    }
 
-   foreach($data['sizes'] as $sizeId => $qty){
-      if($qty > 0){
-         $sizeData[$sizeId] = ['quantity' => $qty];
-         $total_quantity += $qty;
-      }
-   }
+    // -------------------------------
+    // 4️⃣ Prevent saving without stock
+    // -------------------------------
+    if ($total_quantity == 0) {
+        return back()->withErrors([
+            'stock' => 'At least one size & color must have quantity.'
+        ]);
+    }
 
-   // optional validation
-   if(empty($sizeData)){
-      return back()->withErrors([
-         'sizes' => 'At least one size must have quantity'
-      ]);
-   }
+    // -------------------------------
+    // 5️⃣ Update total quantity
+    // -------------------------------
+    $product->quantity = $total_quantity;
 
-   // assign total quantity
-   $product->quantity = $total_quantity;
+    // -------------------------------
+    // 6️⃣ Save product
+    // -------------------------------
+    $product->save();
 
-   // save product
-   $product->save();
-
-   // sync sizes (IMPORTANT 🔥)
-   $product->sizes()->sync($sizeData);
-
-   return redirect()->back()->with('success','your product has been updated successfully');
+    return redirect()->back()->with('success', 'Product updated successfully!');
 }
-   public function productDelete(Product $product){
-
-   $product->delete();
-
-   return redirect()->back()->with('success','product has been delete');
-
    
-   }
 
     // ======================hero section======================//
 

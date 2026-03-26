@@ -45,25 +45,38 @@
 
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                <!-- SIZE SELECT -->
+   <!-- SIZE SELECT (Existing) -->
+@php
+$stock = $product->stock; // stock relation loaded
+$sizeIds = $stock->pluck('pivot.size_id')->unique();
+
+// Get sizes
+$sizes = \App\Models\Size::whereIn('id', $sizeIds)->get();
+
+// Get unique colors
+$colorIds = $stock->pluck('id')->unique(); // color ids unique
+$colors = \App\Models\Color::whereIn('id', $colorIds)->get();
+@endphp
+
 <div class="sizes">
     <label>Select Size</label>
-
     <div class="size-options">
-        @foreach($product->sizes as $size)
-            <label class="size-option">
+        @foreach($sizes as $size)
+            <label>
+                <input type="radio" name="size_id" value="{{ $size->id }}" >
+                {{ $size->name }}
+            </label>
+        @endforeach
+    </div>
+</div>
 
-                <input 
-                    type="radio" 
-                    name="size_id" 
-                    value="{{ $size->id }}"
-                >
-
-                <span>
-                    {{ $size->name }} 
-                 
-                </span>
-
+<div class="colors">
+    <label>Select Color</label>
+    <div class="color-options">
+        @foreach($colors as $color)
+            <label>
+                <input type="radio" name="color_id" value="{{ $color->id }}" >
+                {{ $color->name }}
             </label>
         @endforeach
     </div>

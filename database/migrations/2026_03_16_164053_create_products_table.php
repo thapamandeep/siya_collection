@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('quantity');
             $table->integer('cost');
-            $table->integer('total_cost')->stotreAs('quantity * cost');
+            $table->integer('total_cost')->default(0);
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

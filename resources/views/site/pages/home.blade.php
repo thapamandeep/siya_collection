@@ -105,6 +105,7 @@
                 <a href="{{ route('get.detail', $product->id) }}">
                     <button class="shop-btn">Buy Now</button>
                 </a>
+                <span class="shop-quantity">{{ $product->quantity }}</span>
             </div>
 
         </div>

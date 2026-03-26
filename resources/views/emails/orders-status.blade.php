@@ -27,6 +27,12 @@
             </span>
         </p>
 
+        <p>Color: 
+            <span style="color:green">
+                {{ $order->color->name ?? 'N/A' }}
+            </span>
+        </p>
+
      
      <p>Quantity:  <span style="color:green">{{$order->quantity}}</span></p>
 

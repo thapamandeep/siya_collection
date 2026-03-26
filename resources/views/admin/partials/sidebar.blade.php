@@ -34,8 +34,9 @@
                 <li><a href="{{route('get.product.form')}}">Add Product</a></li>
                 <li><a href="{{route('get.product.index')}}">Table</a></li>
             </ul>
-        </li>        
-
+        </li>
+        
+       
         <!-- Category -->
         <li>
             <input type="checkbox" id="category-toggle" class="toggle-input">
@@ -79,6 +80,17 @@
                 <li><a href="#">Settings</a></li>
             </ul>
         </li>
+
+              <!-- colour -->
+        <li>
+            <input type="checkbox" id="color-toggle" class="toggle-input">
+            <label for="color-toggle" class="toggle-label">colour</label>
+            <ul class="submenu">
+                <li><a href="{{route('get.color.create')}}">Add colour</a></li>
+                <li><a href="{{route('get.product.index')}}">Table</a></li>
+            </ul>
+        </li>      
+
 
         <!-- Logout -->
         <li>

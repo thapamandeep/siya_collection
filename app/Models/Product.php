@@ -4,38 +4,60 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
-use App\Models\Carts;
+use App\Models\Cart;
 use App\Models\Review;
-use App\Models\Size;
+use App\Models\Color;
 
 class Product extends Model
 {
-   protected $fillable =[
-    'name',
-    'image',
-    'description',
-    'quantity',
-    'cost',
-    'total_cost',
-   ];
-   
-   public function category(){
+    protected $fillable = [
+        'name',
+        'image',
+        'description',
+        'quantity',
+        'cost',
+        'total_cost',
+    ];
 
-   return $this->belongsTo(Category::class,'category_id');
-   }
+    // ✅ Category
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
-   public function carts(){
+    // ✅ Cart
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
+    }
 
-   return $this->hasMany(Cart::class,'product_id');
-   }
-   
-   public function reviews(){
+    // ✅ Reviews
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
-   return $this->hasMany(Review::class,);
-   }
+        // sizes relation
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class,'product_size_color')
+                    ->withPivot('color_id','quantity')
+                    ->withTimestamps();
+    }
 
-   public function sizes(){
+    // colors relation
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class,'product_size_color')
+                    ->withPivot('size_id','quantity')
+                    ->withTimestamps();
+    }
 
-   return $this->belongsToMany(Size::class,);
-   }
+    // ✅ MAIN RELATION (IMPORTANT 🔥)
+    public function stock()
+    {
+        return $this->belongsToMany(Color::class, 'product_size_color')
+                    ->withPivot('size_id', 'quantity')
+                    ->withTimestamps();
+    }
 }

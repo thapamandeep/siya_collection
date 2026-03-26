@@ -74,14 +74,13 @@ return view('site.pages.home', compact('heroes','categories','roles'));
     return view('site.profile.edit',compact('user'));
     }
 
-    public function detail(Product $product){
-
-    $product->load('sizes');
-
+  public function detail(Product $product)
+{
+    $product->load('stock'); // अब सबै load हुन्छ
     $reviews = Review::all();
 
-    return view('site.pages.detail',compact('product','reviews'));
-    }
+    return view('site.pages.detail', compact('product','reviews'));
+}
 
     public function aboutUs(){
 

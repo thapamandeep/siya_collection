@@ -42,9 +42,38 @@ $total_category = Category::count();
             <h3><i class="fas fa-money-bill-wave"></i> Total Category</h3>
             <p>{{$total_category}}</p>
         </div>
+   </div>
 
-    </div>
+   @php
+use App\Models\Size;
+$sizes = Size::with('products')->get();
+@endphp
 
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Size ID</th>
+            <th>Size Name</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($sizes as $size)
+            @foreach($size->products as $product)
+                <tr>
+                    <td>{{ $size->id }}</td>
+                    <td>{{ $size->name }}</td>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->pivot->quantity }}</td>
+                </tr>
+            @endforeach
+        @endforeach
+    </tbody>
+</table>
+      
 </div>
+</div>
+
 
 @endsection

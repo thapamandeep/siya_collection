@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ColorController;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -87,3 +88,7 @@ Route::get('/all-orders',[AdminController::class,'orderIndex'])->name('get.all.o
   // -------------------------------for product review----------------------------//
   Route::get('/product-review/{product}',[OrderController::class,'review'])->name('get.product.review')->middleware('user');
   Route::post('store-review/{product}',[OrderController::class,'storeReview'])->name('post.product.review')->middleware('user');
+
+  // ------------------------for the color product-----------------------------//
+  Route::get('product-color',[ColorController::class,'create'])->name('get.color.create')->middleware('admin');
+  Route::post('store-color',[ColorController::class,'store'])->name('admin.color.store')->middleware('admin');

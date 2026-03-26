@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Color;
 
 class Order extends Model
 {
@@ -30,6 +31,10 @@ return $this->belongsTo(User::class,'user_id');
 public function size()
 {
     return $this->belongsTo(Size::class);
+}
+public function color(){
+
+return $this->belongsTo(Color::class,);
 }
 
 

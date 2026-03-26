@@ -141,27 +141,67 @@ select {
     font-size: 13px;
     margin-top: 6px;
 }
-
-.size-selector {
+/* Size + Color Selector */
+.size-color-selector {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Each size section */
+.size-color-selector h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+}
+
+/* Each color row */
+.size-color-row {
+    display: flex;
+    align-items: center;
     gap: 10px;
+    margin-bottom: 6px;
 }
 
-.size-box input {
-    display: none;
+/* Color label */
+.size-color-row label {
+    width: 100px; /* align all labels */
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
 }
 
-.size-box span {
-    padding: 8px 14px;
-    border: 1px solid #ccc;
+/* Quantity input */
+.size-color-row input[type="number"] {
+    width: 80px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #e2e8f0;
     border-radius: 6px;
-    cursor: pointer;
+    background: #f8fafc;
+    transition: all 0.25s ease;
 }
 
-.size-box input:checked + span {
-    background: #111;
-    color: #fff;
-    border-color: #111;
+.size-color-row input[type="number"]:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+    .size-color-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .size-color-row label {
+        width: auto;
+        margin-bottom: 4px;
+    }
 }
 
 

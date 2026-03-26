@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Color;
 
 class Cart extends Model
 {
@@ -13,6 +14,7 @@ class Cart extends Model
         'user_id',
         'product_id',
         'size_id',
+        'color_id',
         'quantity',
         'total_cost',
     ];
@@ -30,5 +32,10 @@ class Cart extends Model
     public function size()
 {
     return $this->belongsTo(Size::class);
+}
+
+public function color()
+{
+    return $this->belongsTo(Color::class);
 }
 }

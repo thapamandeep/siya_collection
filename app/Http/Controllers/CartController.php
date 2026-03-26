@@ -9,6 +9,8 @@ use App\Mail\OrderUpdateStatus;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Size;
+use App\Models\Color;
 
 class CartController extends Controller
 {
@@ -17,6 +19,7 @@ class CartController extends Controller
     $data = $request->validate([
         'quantity'=>'required|integer|min:1',
            'size_id'  => 'required|exists:sizes,id',
+           'color_id'  => 'required|exists:colors,id',
     ]);
 
     if($data['quantity']>$product->quantity){
@@ -30,6 +33,7 @@ class CartController extends Controller
     $carts->user_id = Auth::user()->id;
     $carts->product_id = $product->id;
     $carts->size_id = $data['size_id'];
+    $carts->color_id = $data['color_id'];
     $carts->quantity = $data['quantity'];
     $carts->total_cost = $total_cost;
 
@@ -51,44 +55,78 @@ class CartController extends Controller
 
    return redirect()->back()->with('success','your cart has been delete');
    }
+public function purchase(Request $request)
+{
+    // User को cart fetch
+    $carts = Cart::where('user_id', Auth::id())->get();
 
-   public function purchase(Request $request,){
+    foreach ($carts as $cart) {
 
-   $carts = Cart::where('user_id', Auth::user()->id)->get();
+        // ✅ Load product
+        $product = Product::find($cart->product_id);
+        if (!$product) {
+            return back()->with('error', 'Product not found');
+        }
 
-   foreach($carts as $cart){
+        // ✅ Total product quantity check
+        if ($product->quantity < $cart->quantity) {
+            return back()->with('error', 'Product stock not available');
+        }
 
-   $orders = new Order();
+        // ✅ Pivot table check (size + color)
+        $stockItem = \DB::table('product_size_color')
+            ->where('product_id', $cart->product_id)
+            ->where('size_id', $cart->size_id)
+            ->where('color_id', $cart->color_id)
+            ->first();
 
-   $orders->user_id = $cart->user_id;
-   $orders->product_id = $cart->product_id;
-   $orders->size_id = $cart->size_id;
-   $orders->quantity = $cart->quantity;
-   $orders->status = 'pending';
+        if (!$stockItem) {
+            return back()->with('error', 'Selected size/color not available');
+        }
 
-   $orders->save();
+        if ($stockItem->quantity < $cart->quantity) {
+            return back()->with('error', 'Selected stock not sufficient');
+        }
 
-   $product = Product::find($cart->product_id);
+        // ✅ Reduce pivot table stock
+        \DB::table('product_size_color')
+            ->where('product_id', $cart->product_id)
+            ->where('size_id', $cart->size_id)
+            ->where('color_id', $cart->color_id)
+            ->update([
+                'quantity' => $stockItem->quantity - $cart->quantity,
+            ]);
 
-   if($product){
+        // ✅ Reduce total product quantity
+        $product->quantity -= $cart->quantity;
+        $product->save();
 
-   if($product->quantity>=$cart->quantity){
+        // ✅ Reduce size-specific quantity (if sizes table has quantity)
+        if ($cart->size_id) {
+            $size = Size::find($cart->size_id);
+            if ($size && $size->quantity >= $cart->quantity) {
+                $size->quantity -= $cart->quantity;
+                $size->save();
+            }
+        }
 
-   $product->quantity -= $cart->quantity;
+        // ✅ Create order
+        $order = new Order();
+        $order->user_id = $cart->user_id;
+        $order->product_id = $cart->product_id;
+        $order->size_id = $cart->size_id;
+        $order->color_id = $cart->color_id;
+        $order->quantity = $cart->quantity;
+        $order->status = 'pending';
+        $order->save();
 
-   $product->save();
-   }else{
+        // ✅ Send email
+        Mail::to(Auth::user()->email)->send(new OrderUpdateStatus($order));
+    }
 
-   return redirect()->back()->with('error','stock not avilable');
-   }
-   }
+    // ✅ Clear cart
+    Cart::where('user_id', Auth::id())->delete();
 
-   $cart->delete();
-
-   Mail::to(Auth::user()->email)->send(new OrderUpdateStatus($orders));
-
-   }
-
-   return redirect()->back()->with('success','order placed successfully');
-   }
+    return back()->with('success', 'Order placed successfully');
+}
 }
