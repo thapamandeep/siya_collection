@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -92,3 +93,12 @@ Route::get('/all-orders',[AdminController::class,'orderIndex'])->name('get.all.o
   // ------------------------for the color product-----------------------------//
   Route::get('product-color',[ColorController::class,'create'])->name('get.color.create')->middleware('admin');
   Route::post('store-color',[ColorController::class,'store'])->name('admin.color.store')->middleware('admin');
+
+  // ------------------------------------for Payment--------------------------//
+ Route::middleware('user')->group(function(){
+
+    Route::get('/payment-page', [PaymentController::class, 'index'])->name('get.payment');
+
+    Route::post('/initiate-payment', [PaymentController::class, 'initiate'])->name('post.initiate');
+
+});

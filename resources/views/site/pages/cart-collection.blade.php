@@ -85,10 +85,12 @@
                 <span>Total</span>
                 <span>Rs. {{ $grandTotal }}</span>
             </div>
-<form action="{{route('post.purchase')}}" method="post">@csrf
-            <button class="checkout-btn">Purchase</button>
 
-            </form>
+@if(Auth::check())
+    
+         <a href="{{route('get.payment')}}">  <button class="checkout-btn">Proceed to Payment</button></a> 
+@endif
+           
         </div>
 
     </div>

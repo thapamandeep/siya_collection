@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{ asset('css/contact-us.css') }}">
 <link rel="stylesheet" href="{{ asset('css/my-order.css') }}">
 <link rel="stylesheet" href="{{ asset('css/review.css') }}">
+<link rel="stylesheet" href="{{ asset('css/payment.css') }}">
 
 
 <!-- Swiper JS -->

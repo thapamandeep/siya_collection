@@ -1,0 +1,133 @@
+/* =========================
+   PAYMENT WRAPPER
+========================= */
+.payment-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fb;
+    padding: 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+.payment-card {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* =========================
+   TITLE
+========================= */
+.payment-card h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+.payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.payment-option:hover {
+    border-color: #3b82f6;
+    background: #f9fafb;
+}
+
+/* Radio */
+.payment-option input {
+    accent-color: #3b82f6;
+    transform: scale(1.2);
+}
+
+/* Text */
+.payment-option span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.pay-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #111827;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+/* =========================
+   MOBILE RESPONSIVE (IMPROVED)
+========================= */
+@media (max-width: 500px) {
+
+    .payment-wrapper {
+        padding: 15px;
+        align-items: flex-start; /* top align for mobile */
+    }
+
+    .payment-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .payment-card h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .payment-option {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .payment-option span {
+        font-size: 14px;
+    }
+
+    .payment-option input {
+        transform: scale(1.1);
+    }
+
+    .pay-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

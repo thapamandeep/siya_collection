@@ -55,6 +55,7 @@ class CartController extends Controller
 
    return redirect()->back()->with('success','your cart has been delete');
    }
+
 public function purchase(Request $request)
 {
     // User को cart fetch
@@ -102,13 +103,13 @@ public function purchase(Request $request)
         $product->save();
 
         // ✅ Reduce size-specific quantity (if sizes table has quantity)
-        if ($cart->size_id) {
-            $size = Size::find($cart->size_id);
-            if ($size && $size->quantity >= $cart->quantity) {
-                $size->quantity -= $cart->quantity;
-                $size->save();
-            }
-        }
+        // if ($cart->size_id) {
+        //     $size = Size::find($cart->size_id);
+        //     if ($size && $size->quantity >= $cart->quantity) {
+        //         $size->quantity -= $cart->quantity;
+        //         $size->save();
+        //     }
+        // }
 
         // ✅ Create order
         $order = new Order();
