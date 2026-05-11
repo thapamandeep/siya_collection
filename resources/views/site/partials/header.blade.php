@@ -25,17 +25,51 @@
 
         <ul class="menu">
             <li><a href="{{route('get.front')}}">Home</a></li>
-            <li><a href="#">Category</a></li>
+      
+            <li class="dropdown">
+    <a href="#">Category ▾</a>
+
+    <ul class="dropdown-menu">
+        @foreach($categories as $category)
+            <li>
+                <a href="{{ route('category.products', $category->id) }}">
+                    {{ $category->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</li>
             <li><a href="#">Latest <span class="hot">HOT</span></a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="{{route('get.about.us')}}">About Us</a></li>
             <li><a href="{{route('get.contact.us')}}">Contact Us</a></li>
         </ul>
 
+
         <div class="nav-right">
-            <input type="text" placeholder="Search products">
-           <a href="{{route('get.register')}}"> <button class="signin">Sign In</button></a>
-        </div>
-    </div>
+
+    <form action="{{ route('product.search') }}" method="GET">
+        
+        <input type="text" 
+               name="search"
+               placeholder="Search products">
+
+        @if(Auth::check())
+
+            <button type="submit">Search</button>
+
+        @else
+
+            <a href="{{ route('get.register') }}">
+                <button type="button" class="signin">
+                    Sign Up
+                </button>
+            </a>
+
+        @endif
+
+    </form>
+
+</div>
 
 </header>

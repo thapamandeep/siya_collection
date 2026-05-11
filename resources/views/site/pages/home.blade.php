@@ -81,15 +81,22 @@
 
 <section class="shop-section">
 
-    <!-- ✅ Category Name -->
-    <h2 class="shop-title">{{ $category->name }}</h2>
+    <!-- HEADER -->
+    <div class="shop-header">
+        <h2 class="shop-title">{{ $category->name }}</h2>
 
-    <div class="shop-grid">
+        <div class="shop-controls">
+            <button class="scroll-btn left" onclick="scrollCategory({{ $category->id }}, -1)">❮</button>
+            <button class="scroll-btn right" onclick="scrollCategory({{ $category->id }}, 1)">❯</button>
+        </div>
+    </div>
 
+    <!-- PRODUCTS -->
+    <div class="shop-grid" id="category-{{ $category->id }}">
+        
         @foreach($category->products as $product)
 
         <div class="shop-card">
-
             <a href="{{route('get.detail',$product->id)}}">
                 <div class="shop-image">
                     <img src="{{ asset('storage/album/'.$product->image) }}" alt="{{ $product->name }}">
@@ -107,7 +114,6 @@
                 </a>
                 <span class="shop-quantity">{{ $product->quantity }}</span>
             </div>
-
         </div>
 
         @endforeach

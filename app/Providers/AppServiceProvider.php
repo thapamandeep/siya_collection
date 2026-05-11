@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+    use App\Models\Category;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,5 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {  
           Schema::defaultStringLength(191);
-    }
+    
+    $categories = Category::all();
+    view()->share('categories', $categories);
+}
 }

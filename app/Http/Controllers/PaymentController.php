@@ -8,12 +8,14 @@ use App\Models\Cart;
 
 class PaymentController extends Controller
 {
-    public function index(){
+   public function index()
+{
+    $carts = Cart::where('user_id', Auth::id())->get();
 
-    $carts = Cart::where('user_id',Auth::user()->id)->get();
+    $total = $carts->sum('total_cost');
 
-    return view('site.payment.index',compact('carts'));
-    }
+    return view('site.payment.index', compact('total','carts'));
+}
 
     public function initiate(Request $request){
 
@@ -41,4 +43,9 @@ class PaymentController extends Controller
           return redirect()->route('get.login.page')->with('error', 'Please login to proceed with payment');
     }
     }
+
+    public function success()
+{
+    return app(OrderController::class)->purchase(request());
+}
 }

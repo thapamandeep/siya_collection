@@ -42,6 +42,7 @@
 <script src="{{ asset('js/hero-slide.js') }}"></script>
 <script src="{{ asset('js/register.js') }}"></script>
 <script src="{{ asset('js/profile.js') }}"></script>
+<script src="{{ asset('js/product-slide.js') }}"></script>
 
 </body>
 <!-- Swiper CSS -->

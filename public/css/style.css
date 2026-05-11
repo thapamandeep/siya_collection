@@ -106,6 +106,95 @@ body {
     background: #2563eb;
 }
 
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-right form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-right input{
+    width: 250px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    outline: none;
+    font-size: 14px;
+}
+
+.nav-right input:focus{
+    border-color: #ff4d6d;
+}
+
+.nav-right button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Search Button */
+.nav-right button[type="submit"]{
+    background: #111;
+    color: white;
+}
+
+.nav-right button[type="submit"]:hover{
+    background: #ff4d6d;
+}
+
+/* Sign Up Button */
+.signin{
+    background: #ff4d6d;
+    color: white;
+}
+
+.signin:hover{
+    background: #111;
+}
+
+.navbar .menu li{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 180px;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
+.dropdown-menu li{
+    list-style: none;
+}
+
+.dropdown-menu li a{
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover{
+    background: #f5f5f5;
+}
+
+/* hover effect */
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
 /* ============================
    HERO SECTION
 ============================ */
@@ -224,6 +313,72 @@ body {
     pointer-events: none; /* won’t block button clicks */
     line-height: 1;
     letter-spacing: 1px;  /* slight spacing for style */
+}
+
+/* ============================
+   SHOP SECTION HEADER
+============================ */
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: orange;     /* full width background */
+    padding: 12px 30px;
+    margin-top: 2px;
+}
+
+
+/* CATEGORY TITLE */
+.shop-title {
+    font-size: 22px;
+    margin: 0;
+}
+
+.shop-header .shop-title {
+    color: #fff !important;
+}
+
+/* RIGHT SIDE BUTTONS */
+.shop-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.scroll-btn {
+    background: #fff;     /* contrast on orange bg */
+    color: orange;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.scroll-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* ============================
+   HORIZONTAL SCROLL PRODUCTS
+============================ */
+.shop-grid {
+    display: flex;              /* horizontal */
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 30px;
+    scroll-behavior: smooth;
+}
+
+.shop-grid::-webkit-scrollbar {
+    display: none; /* hide scrollbar */
+}
+
+/* CARD FIX WIDTH */
+.shop-card {
+    min-width: 250px;
+    flex: 0 0 auto;
 }
 
 /* ============================

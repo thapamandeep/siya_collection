@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -101,4 +102,15 @@ Route::get('/all-orders',[AdminController::class,'orderIndex'])->name('get.all.o
 
     Route::post('/initiate-payment', [PaymentController::class, 'initiate'])->name('post.initiate');
 
+    Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment.success');
+   Route::get('/payment-fail', function(){
+    return "Payment Failed";
+})->name('payment.fail');
+
 });
+
+Route::get('/search', [ProductController::class, 'search'])
+    ->name('product.search');
+
+    Route::get('/category/{id}', [ProductController::class, 'categoryProducts'])
+    ->name('category.products');
